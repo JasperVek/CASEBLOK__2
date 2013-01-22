@@ -21,9 +21,103 @@ namespace Case2Project
             InitializeComponent();
         }
 
+        object returnValueSpeloptienr;
+        object returnValueGenrenr;
+        object returnValueGamenr;
+        string speloptienrreturn, gamenrreturn, genrenrreturn;
+
+
+
+        private void returnMethodeSpeloptienr()
+        {
+
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommand2 = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+
+            string command2;
+            
+            connection.Open();
+            command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" + comboBoxSpeloptie.Text + "'";
+
+            insertCommand2.CommandText = command2;
+            insertCommand2.Connection = connection;
+            adapter.InsertCommand = insertCommand2;
+
+
+            returnValueSpeloptienr = insertCommand2.ExecuteScalar();
+            connection.Close();
+            speloptienrreturn = returnValueSpeloptienr.ToString();
+            
+            
+        }
+
+        private void returnMethodeGenrenr()
+        {
+
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommand2 = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+
+            string command2;
+            
+            connection.Open();
+            command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + textBoxGenre.Text +"'";
+
+            insertCommand2.CommandText = command2;
+            insertCommand2.Connection = connection;
+            adapter.InsertCommand = insertCommand2;
+
+
+            returnValueGenrenr = insertCommand2.ExecuteScalar();
+            connection.Close();
+            genrenrreturn = returnValueGenrenr.ToString();
+            
+
+        }
+
+        
+
+        private void returnMethodeGamenr()
+        {
+
+
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommand3 = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+
+
+            string command3;
+            
+            connection.Open();
+            command3 = "SELECT gamenr FROM GAME WHERE titel = " + textBoxTitel.Text + "'";
+
+            insertCommand3.CommandText = command3;
+            insertCommand3.Connection = connection;
+            adapter.InsertCommand = insertCommand3;
+
+
+            returnValueGamenr = insertCommand3.ExecuteScalar();
+            connection.Close();
+
+            gamenrreturn = returnValueGamenr.ToString();
+            
+            } 
+
+
         private void aanpassingenOkButton_Click(object sender, EventArgs e)
         {
+            // spelopties van deze actie
+            string spelopties = comboBoxSpeloptie.Text;
+            // genre van deze actie
+            string genre = textBoxGenre.Text;
             // 
+
+
             if (Form4.aanpassing == true)
             {
 
@@ -44,39 +138,69 @@ namespace Case2Project
             OleDbCommand insertCommand3 = new OleDbCommand();
             OleDbDataAdapter adapter3 = new OleDbDataAdapter();
 
+            OleDbCommand insertCommand4 = new OleDbCommand();
+            OleDbDataAdapter adapter4 = new OleDbDataAdapter();
+
             string command;
-            string commandspelopties;
+            
+            string commandgamespelopties;
+            string commandgamegenre;
             string commandgenre;
+
 
             try
             {
                 connection.Open();
-                command = "INSERT INTO GAME(titel, maker, prijs, leeftijd, datum,) VALUES('" +
-                    textBoxTitel.Text + "', '" + textBoxMaker.Text + "', '" + textBoxPrijs.Text +
-                    "', '" + textBoxLeeftijd.Text + "', '" + textBoxDatum.Text + "')";
-                // nog genre en spelopties en een if voor als er 2 of meerdere zijn
-                // voor spelopties kan er maar 2 zijn in totaal
+                command = "INSERT INTO GAME(titel, maker, prijs, leeftijd, datum) VALUES('" +
+                    textBoxTitel.Text + "', '" + textBoxMaker.Text + "', '" + Convert.ToInt32(textBoxPrijs.Text) +
+                    "', '" + Convert.ToInt32(textBoxLeeftijd.Text) + "', '" + textBoxDatum.Text + "')";
+                
 
-                insertCommand.CommandText = command;
+                
+                // eerste command
+                
                 insertCommand.Connection = connection;
+                insertCommand.CommandText = command;
                 adapter.InsertCommand = insertCommand;
-
                 adapter.InsertCommand.ExecuteNonQuery();
 
-                //2 spelopties
-                insertCommand2.CommandText = commandspelopties;
+                // zoeken
+                returnMethodeGamenr();
+                returnMethodeGenrenr();
+                returnMethodeSpeloptienr();
+                MessageBox.Show(gamenrreturn);
+                commandgenre = " INSERT INTO GENRE(genre) VALUES('" + genre + "')";
+                commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
+                    gamenrreturn + "')";
+                commandgamespelopties = " INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('" + speloptienrreturn + "', '" +
+                    gamenrreturn + "')";
+
+               
+
+
+                
+
+                insertCommand4.CommandText = commandgamespelopties;
+                insertCommand4.Connection = connection;
+                
+                // spelopties
+                insertCommand2.CommandText = commandgamespelopties;
                 insertCommand2.Connection = connection;
+                // genre
+                insertCommand3.CommandText = commandgamegenre;
+                insertCommand3.Connection = connection;
+               
+                // de adapters en uitvoeringen
+                
+                adapter3.InsertCommand = insertCommand3;
                 adapter2.InsertCommand = insertCommand2;
 
-                adapter.InsertCommand.ExecuteNonQuery();
+                adapter2.InsertCommand.ExecuteNonQuery();
+                adapter3.InsertCommand.ExecuteNonQuery();
+                
+                adapter4.InsertCommand.ExecuteNonQuery();
 
-                //3 genre
-                insertCommand.CommandText = commandgenre;
-                insertCommand.Connection = connection;
-                adapter.InsertCommand = insertCommand;
-
-                adapter.InsertCommand.ExecuteNonQuery();
-
+                MessageBox.Show("GESLAAGD");
                 this.Close();
             }
             catch (Exception obj)

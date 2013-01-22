@@ -51,105 +51,103 @@ namespace Case2Project
 
         private void buttonVerwijderen_Click(object sender, EventArgs e)
         {
+
+            
             if (gamedatabaseLabel.Text == "selected")
             {
-                try
-                {
-                    OleDbConnection connection = new OleDbConnection(connectionstring);
+                OleDbConnection connection = new OleDbConnection(connectionstring);
 
-                    connection.Open();
-                    string commandGame = "DELETE FROM GAME WHERE gamenr = '"
-                        + gamenr + "'";
-                    OleDbCommand dropCommand = new OleDbCommand();
-                    OleDbDataAdapter adapter = new OleDbDataAdapter();
-                    dropCommand.CommandText = commandGame;
-                    dropCommand.Connection = connection;
-                    adapter.DeleteCommand = dropCommand;
-                    adapter.DeleteCommand.ExecuteNonQuery();
+                connection.Open();
+                string commandGame = "DELETE FROM GAME WHERE gamenr = '"
+                    + gamenr + "'";
+                OleDbCommand dropCommand = new OleDbCommand();
+                OleDbDataAdapter adapter = new OleDbDataAdapter();
+                dropCommand.CommandText = commandGame;
+                dropCommand.Connection = connection;
+                adapter.DeleteCommand = dropCommand;
+                adapter.DeleteCommand.ExecuteNonQuery();
 
-                    //genre
+                //genre
 
-                    string commandGenre = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" +
-                        gamenr + "'";
-                    DataTable table = new DataTable();
-                    OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, connectionstring);
-                    table.Clear();
-                    adapterGenre.Fill(table);
+                string commandGenre = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" +
+                    gamenr + "'";
+                DataTable table = new DataTable();
+                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, connectionstring);
+                table.Clear();
+                adapterGenre.Fill(table);
 
-                    string commandDelGenre = "DELETE FROM GENRE WHERE genrenr = '" +
-                        table.Rows[0][0] + "'";
+                string commandDelGenre = "DELETE FROM GENRE WHERE genrenr = '" +
+                    table.Rows[0][0] + "'";
 
-                    OleDbCommand dropCommand2 = new OleDbCommand();
-                    OleDbDataAdapter adapterGenre2 = new OleDbDataAdapter();
-                    dropCommand2.CommandText = commandDelGenre;
-                    dropCommand2.Connection = connection;
-                    adapterGenre2.DeleteCommand = dropCommand2;
-                    adapterGenre2.DeleteCommand.ExecuteNonQuery();
+                OleDbCommand dropCommand2 = new OleDbCommand();
+                OleDbDataAdapter adapterGenre2 = new OleDbDataAdapter();
+                dropCommand2.CommandText = commandDelGenre;
+                dropCommand2.Connection = connection;
+                adapterGenre2.DeleteCommand = dropCommand2;
+                adapterGenre2.DeleteCommand.ExecuteNonQuery();
 
-                    string commandDelGenre2 = "DELETE FROM GAME_GENRE WHERE genrenr = '" +
-                        table.Rows[0][0] + "'";
-                    OleDbCommand dropCommand3 = new OleDbCommand();
-                    OleDbDataAdapter adapterGenre3 = new OleDbDataAdapter();
-                    dropCommand3.CommandText = commandDelGenre2;
-                    dropCommand3.Connection = connection;
-                    adapterGenre3.DeleteCommand = dropCommand3;
-                    adapterGenre3.DeleteCommand.ExecuteNonQuery();
+                string commandDelGenre2 = "DELETE FROM GAME_GENRE WHERE genrenr = '" +
+                    table.Rows[0][0] + "'";
+                OleDbCommand dropCommand3 = new OleDbCommand();
+                OleDbDataAdapter adapterGenre3 = new OleDbDataAdapter();
+                dropCommand3.CommandText = commandDelGenre2;
+                dropCommand3.Connection = connection;
+                adapterGenre3.DeleteCommand = dropCommand3;
+                adapterGenre3.DeleteCommand.ExecuteNonQuery();
 
-                    //speloptie
+                //speloptie
 
-                    string commandSpeloptie = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" +
-                        gamenr + "'";
-                    OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, connectionstring);
-                    DataTable table2 = new DataTable();
-                    table2.Clear();
-                    adapterSpeloptie.Fill(table2);
+                string commandSpeloptie = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" +
+                    gamenr + "'";
+                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, connectionstring);
+                DataTable table2 = new DataTable();
+                table2.Clear();
+                adapterSpeloptie.Fill(table2);
 
-                    string commandDelSpeloptie = "DELETE FROM SPELOPTIE WHERE speloptienr = '" +
-                        table2.Rows[0][0] + "'";
-                    OleDbCommand dropCommand4 = new OleDbCommand();
-                    OleDbDataAdapter adapterSpeloptie2 = new OleDbDataAdapter();
-                    dropCommand4.CommandText = commandDelSpeloptie;
-                    dropCommand4.Connection = connection;
-                    adapterSpeloptie2.DeleteCommand = dropCommand4;
-                    adapterSpeloptie2.DeleteCommand.ExecuteNonQuery();
+                string commandDelSpeloptie = "DELETE FROM SPELOPTIE WHERE speloptienr = '" +
+                    table2.Rows[0][0] + "'";
+                OleDbCommand dropCommand4 = new OleDbCommand();
+                OleDbDataAdapter adapterSpeloptie2 = new OleDbDataAdapter();
+                dropCommand4.CommandText = commandDelSpeloptie;
+                dropCommand4.Connection = connection;
+                adapterSpeloptie2.DeleteCommand = dropCommand4;
+                adapterSpeloptie2.DeleteCommand.ExecuteNonQuery();
 
-                    string commandDelSpeloptie2 = "DELETE FROM GAME_SPELOPTIE WHERE speloptienr = '" +
-                        table2.Rows[0][0] + "'";
-                    OleDbCommand dropCommand5 = new OleDbCommand();
-                    OleDbDataAdapter adapterSpeloptie3 = new OleDbDataAdapter();
-                    dropCommand5.CommandText = commandDelSpeloptie2;
-                    dropCommand5.Connection = connection;
-                    adapterSpeloptie3.DeleteCommand = dropCommand5;
-                    adapterSpeloptie3.DeleteCommand.ExecuteNonQuery();
+                string commandDelSpeloptie2 = "DELETE FROM GAME_SPELOPTIE WHERE speloptienr = '" +
+                    table2.Rows[0][0] + "'";
+                OleDbCommand dropCommand5 = new OleDbCommand();
+                OleDbDataAdapter adapterSpeloptie3 = new OleDbDataAdapter();
+                dropCommand5.CommandText = commandDelSpeloptie2;
+                dropCommand5.Connection = connection;
+                adapterSpeloptie3.DeleteCommand = dropCommand5;
+                adapterSpeloptie3.DeleteCommand.ExecuteNonQuery();
 
-                    //beoordeling
+                //beoordeling
 
-                    string commandDelBeoordeling = "DELETE FROM GAME_BEOORDELING WHERE gamenr = '" +
-                        gamenr + "'";
-                    OleDbCommand dropCommand6 = new OleDbCommand();
-                    OleDbDataAdapter adapterDelBeoordeling = new OleDbDataAdapter();
-                    dropCommand6.CommandText = commandDelBeoordeling;
-                    dropCommand6.Connection = connection;
-                    adapterDelBeoordeling.DeleteCommand = dropCommand6;
-                    adapterDelBeoordeling.DeleteCommand.ExecuteNonQuery();
+                string commandDelBeoordeling = "DELETE FROM GAME_BEOORDELING WHERE gamenr = '" +
+                    gamenr + "'";
+                OleDbCommand dropCommand6 = new OleDbCommand();
+                OleDbDataAdapter adapterDelBeoordeling = new OleDbDataAdapter();
+                dropCommand6.CommandText = commandDelBeoordeling;
+                dropCommand6.Connection = connection;
+                adapterDelBeoordeling.DeleteCommand = dropCommand6;
+                adapterDelBeoordeling.DeleteCommand.ExecuteNonQuery();
 
-                    MessageBox.Show("Verwijdering voltooid.");
+                MessageBox.Show("Verwijdering voltooid.");
 
-                    connection.Close();
-                }
-                catch (Exception obj)
-                {
-                    MessageBox.Show(obj.Message);
-                }
+                connection.Close();
             }
+
             else
             {
+
                 if (gebruikersnr == "1")
                 {
                     MessageBox.Show("You will never kill me!");
                 }
                 else
                 {
+
                     OleDbConnection connection = new OleDbConnection(connectionstring);
                     DataTable table = new DataTable();
                     OleDbCommand dropCommand = new OleDbCommand();
@@ -165,6 +163,7 @@ namespace Case2Project
 
                     adapter.DeleteCommand.ExecuteNonQuery();
                     connection.Close();
+
                 }
             }
         }
@@ -189,8 +188,8 @@ namespace Case2Project
         private void buttonAdminZoek_Click(object sender, EventArgs e)
         {
             if (userdatabaseLabel.Text == "selected")
-            {
-                // userdatabase open
+            {// userdatabase open
+
                 string command;
                 DataTable dataTable = new DataTable();
 
@@ -210,8 +209,8 @@ namespace Case2Project
             }
 
             else
-            {
-                //gamedatabase open
+            {//gamedatabase open
+
                 string command;
                 DataTable dataTable = new DataTable();
 
@@ -254,6 +253,7 @@ namespace Case2Project
 
             else
             {
+
                 string command;
                 DataTable dataTable = new DataTable();
 

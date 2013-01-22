@@ -1,0 +1,22 @@
+GAME(-gamenr-, beoordelingsnr, titel, maker, prijs, leeftijd, datum, spelopties)
+FOREIGN KEY: beoordelingsnr --> GAME_B(beoordelingsnr)
+
+GAME_GENRE(-genrenr-, -gamenr-)
+FOREIGN KEY: gamenr --> GAME(gamenr)
+genrenr --> GENRE(genrenr)
+
+GENRE(-genrenr-, genre)
+FOREIGN KEY: -
+
+GAME_SPELOPTIE(-speloptienr-, -gamenr-)
+FOREIGN KEY: speloptienr --> SPELOPTIE(speloptienr)
+gamenr --> GAME(gamenr)
+
+SPELOPTIE(-speloptienr-, spelopties)
+
+GAME_B(-beoordelingsnr-, gamenr, gebruikernr, beoordeling, beoordelingscijfer)
+FOREIGN KEY: gebruikernr --> GEBRUIKER(gebruikernr)
+gamenr --> GAME(gamenr)
+
+GEBRUIKER(-gebruiknr-, naam, wachtwoord)
+FOREIGN KEY: -

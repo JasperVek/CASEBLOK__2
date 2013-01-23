@@ -45,14 +45,11 @@ namespace Case2Project
             }
 
            // gamenr meegeven en naar form5 gaan, daar de gegevens die al erin staan ( alles ) ophalen met een select via het gamenr
-            // en dan met alter query op form5
-         
+           // en dan met alter query op form5
         }
 
         private void buttonVerwijderen_Click(object sender, EventArgs e)
         {
-
-            
             if (gamedatabaseLabel.Text == "selected")
             {
                 OleDbConnection connection = new OleDbConnection(connectionstring);
@@ -137,10 +134,8 @@ namespace Case2Project
 
                 connection.Close();
             }
-
             else
             {
-
                 if (gebruikersnr == "1")
                 {
                     MessageBox.Show("You will never kill me!");
@@ -163,7 +158,6 @@ namespace Case2Project
 
                     adapter.DeleteCommand.ExecuteNonQuery();
                     connection.Close();
-
                 }
             }
         }
@@ -188,7 +182,8 @@ namespace Case2Project
         private void buttonAdminZoek_Click(object sender, EventArgs e)
         {
             if (userdatabaseLabel.Text == "selected")
-            {// userdatabase open
+            {
+                // userdatabase open
 
                 string command;
                 DataTable dataTable = new DataTable();
@@ -209,7 +204,8 @@ namespace Case2Project
             }
 
             else
-            {//gamedatabase open
+            {
+                //gamedatabase open
 
                 string command;
                 DataTable dataTable = new DataTable();
@@ -250,10 +246,8 @@ namespace Case2Project
                     MessageBox.Show(obj.Message);
                 }
             }
-
             else
             {
-
                 string command;
                 DataTable dataTable = new DataTable();
 
@@ -323,7 +317,6 @@ namespace Case2Project
                     adapter4.Fill(dataTable4);
                     adminDataGridViewSpeloptie.DataSource = dataTable4; 
                 }
-
                 catch (Exception obj)
                 {
                     MessageBox.Show(obj.Message);

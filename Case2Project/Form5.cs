@@ -21,9 +21,7 @@ namespace Case2Project
             InitializeComponent();
         }
 
-        object returnValueSpeloptienr;
-        object returnValueGenrenr;
-        object returnValueGamenr;
+       
         string speloptienrreturn, gamenrreturn, genrenrreturn;
 
         private void returnMethodeSpeloptienr()
@@ -38,7 +36,7 @@ namespace Case2Project
             dataTable.Clear();
             adapter.Fill(dataTable);
 
-            speloptienrreturn = dataTable.ToString();
+            speloptienrreturn = dataTable.Rows[0][0].ToString();
         }
 
         private void returnMethodeGenrenr()
@@ -53,7 +51,7 @@ namespace Case2Project
             dataTable.Clear();
             adapter.Fill(dataTable);
 
-            genrenrreturn = dataTable.ToString();
+            genrenrreturn = dataTable.Rows[0][0].ToString();
         }
 
         private void returnMethodeGamenr()
@@ -62,13 +60,13 @@ namespace Case2Project
 
             string command3;
 
-            command3 = "SELECT gamenr FROM GAME WHERE titel = " + textBoxTitel.Text + "'";
+            command3 = "SELECT gamenr FROM GAME WHERE titel = '" + textBoxTitel.Text + "'";
             DataTable dataTable = new DataTable();
             OleDbDataAdapter adapter = new OleDbDataAdapter(command3, Form1.connectionstring);
             dataTable.Clear();
             adapter.Fill(dataTable);
 
-            gamenrreturn = dataTable.ToString();
+            gamenrreturn = dataTable.Rows[0][0].ToString();
         } 
 
 
@@ -124,25 +122,28 @@ namespace Case2Project
                     adapter.InsertCommand.ExecuteNonQuery();
 
                     // zoeken
-                    MessageBox.Show(gamenrreturn);
+                    
                     commandgenre = " INSERT INTO GENRE(genre) VALUES('" + genre + "')";
                     commandspelopties = "INSERT INTO SPELOPTIE(speloptie) VALUES('" + comboBoxSpeloptie.Text + "')";
-                    commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
-                        gamenrreturn + "')";
-                    commandgamespelopties = " INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('" + speloptienrreturn + "', '" +
-                        gamenrreturn + "')";
 
                     insertCommand4.CommandText = commandgenre;
                     insertCommand4.Connection = connection;
+                    adapter4.InsertCommand = insertCommand4;
                     adapter4.InsertCommand.ExecuteNonQuery();
 
-                    insertCommand5.CommandText = commandgenre;
+                    insertCommand5.CommandText = commandspelopties;
                     insertCommand5.Connection = connection;
+                    adapter5.InsertCommand = insertCommand5;
                     adapter5.InsertCommand.ExecuteNonQuery();
 
                     returnMethodeGamenr();
                     returnMethodeGenrenr();
                     returnMethodeSpeloptienr();
+
+                    commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
+                        gamenrreturn + "')";
+                    commandgamespelopties = " INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('" + speloptienrreturn + "', '" +
+                        gamenrreturn + "')";
 
                     // spelopties
                     insertCommand2.CommandText = commandgamespelopties;
@@ -154,10 +155,10 @@ namespace Case2Project
                     // de adapters en uitvoeringen
 
                     adapter3.InsertCommand = insertCommand3;
-                    adapter2.InsertCommand = insertCommand2;
-
-                    adapter2.InsertCommand.ExecuteNonQuery();
                     adapter3.InsertCommand.ExecuteNonQuery();
+
+                    adapter2.InsertCommand = insertCommand2;
+                    adapter2.InsertCommand.ExecuteNonQuery();
 
                     MessageBox.Show("GESLAAGD");
                     this.Close();

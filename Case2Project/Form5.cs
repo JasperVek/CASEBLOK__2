@@ -79,7 +79,10 @@ namespace Case2Project
 
             if (Form4.aanpassing == true)
             {
-                //einde
+                // aanpassing maken
+
+
+                // einde aanpassing
                 Form4.aanpassing = false;
             }
 

@@ -17,7 +17,7 @@ namespace Case2Project
             @"Data Source=|DataDirectory|\GAMES.sdf";
 
         private string gebruikersnr;
-        private string gamenr;
+        public static string adminGamenr;
 
         public Form4()
         {
@@ -37,10 +37,10 @@ namespace Case2Project
 
         private void buttonBewerken_Click(object sender, EventArgs e)
         {
-            if (gamedatabaseLabel.Text == "selected")
+            if (gamedatabaseLabel.Text == "selected" && adminGamenr != null)
             {
-                Form5 form5 = new Form5();
                 aanpassing = true;
+                Form5 form5 = new Form5();
                 form5.Show();
             }
 
@@ -56,7 +56,7 @@ namespace Case2Project
 
                 connection.Open();
                 string commandGame = "DELETE FROM GAME WHERE gamenr = '"
-                    + gamenr + "'";
+                    + adminGamenr + "'";
                 OleDbCommand dropCommand = new OleDbCommand();
                 OleDbDataAdapter adapter = new OleDbDataAdapter();
                 dropCommand.CommandText = commandGame;
@@ -67,7 +67,7 @@ namespace Case2Project
                 //genre
 
                 string commandGenre = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" +
-                    gamenr + "'";
+                    adminGamenr + "'";
                 DataTable table = new DataTable();
                 OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, connectionstring);
                 table.Clear();
@@ -95,7 +95,7 @@ namespace Case2Project
                 //speloptie
 
                 string commandSpeloptie = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" +
-                    gamenr + "'";
+                    adminGamenr + "'";
                 OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, connectionstring);
                 DataTable table2 = new DataTable();
                 table2.Clear();
@@ -122,7 +122,7 @@ namespace Case2Project
                 //beoordeling
 
                 string commandDelBeoordeling = "DELETE FROM GAME_BEOORDELING WHERE gamenr = '" +
-                    gamenr + "'";
+                    adminGamenr + "'";
                 OleDbCommand dropCommand6 = new OleDbCommand();
                 OleDbDataAdapter adapterDelBeoordeling = new OleDbDataAdapter();
                 dropCommand6.CommandText = commandDelBeoordeling;
@@ -282,10 +282,10 @@ namespace Case2Project
                 try
                 {
                     // genre
-                    gamenr = adminDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    adminGamenr = adminDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
 
                     command = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '"
-                        + gamenr + "'";
+                        + adminGamenr + "'";
                     OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
@@ -302,7 +302,7 @@ namespace Case2Project
 
                     //2de gedeelte voor spelopties
                     command3 = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '"
-                        + gamenr + "'";
+                        + adminGamenr + "'";
                     OleDbDataAdapter adapter3 = new OleDbDataAdapter(command3, connectionstring);
                     dataTable3.Clear();
                     adapter3.Fill(dataTable3);

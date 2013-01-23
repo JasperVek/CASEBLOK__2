@@ -29,62 +29,46 @@ namespace Case2Project
         private void returnMethodeSpeloptienr()
         {
             OleDbConnection connection = new OleDbConnection(connectionstring);
-            OleDbCommand insertCommand2 = new OleDbCommand();
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            DataTable dataTable = new DataTable();
 
             string command2;
             
-            connection.Open();
             command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" + comboBoxSpeloptie.Text + "'";
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Form1.connectionstring);
+            dataTable.Clear();
+            adapter.Fill(dataTable);
 
-            insertCommand2.CommandText = command2;
-            insertCommand2.Connection = connection;
-            adapter.InsertCommand = insertCommand2;
-
-            returnValueSpeloptienr = insertCommand2.ExecuteScalar();
-            connection.Close();
-            speloptienrreturn = returnValueSpeloptienr.ToString();
+            speloptienrreturn = dataTable.ToString();
         }
 
         private void returnMethodeGenrenr()
         {
             OleDbConnection connection = new OleDbConnection(connectionstring);
-            OleDbCommand insertCommand2 = new OleDbCommand();
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
 
             string command2;
             
-            connection.Open();
             command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + textBoxGenre.Text +"'";
+            DataTable dataTable = new DataTable();
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Form1.connectionstring);
+            dataTable.Clear();
+            adapter.Fill(dataTable);
 
-            insertCommand2.CommandText = command2;
-            insertCommand2.Connection = connection;
-            adapter.InsertCommand = insertCommand2;
-
-            returnValueGenrenr = insertCommand2.ExecuteScalar();
-            connection.Close();
-            genrenrreturn = returnValueGenrenr.ToString();
+            genrenrreturn = dataTable.ToString();
         }
 
         private void returnMethodeGamenr()
         {
             OleDbConnection connection = new OleDbConnection(connectionstring);
-            OleDbCommand insertCommand3 = new OleDbCommand();
-            OleDbDataAdapter adapter = new OleDbDataAdapter();
 
             string command3;
 
-            connection.Open();
             command3 = "SELECT gamenr FROM GAME WHERE titel = " + textBoxTitel.Text + "'";
+            DataTable dataTable = new DataTable();
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command3, Form1.connectionstring);
+            dataTable.Clear();
+            adapter.Fill(dataTable);
 
-            insertCommand3.CommandText = command3;
-            insertCommand3.Connection = connection;
-            adapter.InsertCommand = insertCommand3;
-
-            returnValueGamenr = insertCommand3.ExecuteScalar();
-            connection.Close();
-
-            gamenrreturn = returnValueGamenr.ToString();
+            gamenrreturn = dataTable.ToString();
         } 
 
 
@@ -117,12 +101,14 @@ namespace Case2Project
                 OleDbCommand insertCommand4 = new OleDbCommand();
                 OleDbDataAdapter adapter4 = new OleDbDataAdapter();
 
-                string command;
+                OleDbCommand insertCommand5 = new OleDbCommand();
+                OleDbDataAdapter adapter5 = new OleDbDataAdapter();
 
+                string command;
                 string commandgamespelopties;
                 string commandgamegenre;
                 string commandgenre;
-
+                string commandspelopties;
 
                 try
                 {
@@ -132,26 +118,31 @@ namespace Case2Project
                         "', '" + Convert.ToInt32(textBoxLeeftijd.Text) + "', '" + textBoxDatum.Text + "')";
 
                     // eerste command
-
                     insertCommand.Connection = connection;
                     insertCommand.CommandText = command;
                     adapter.InsertCommand = insertCommand;
                     adapter.InsertCommand.ExecuteNonQuery();
 
                     // zoeken
-                    returnMethodeGamenr();
-                    returnMethodeGenrenr();
-                    returnMethodeSpeloptienr();
                     MessageBox.Show(gamenrreturn);
                     commandgenre = " INSERT INTO GENRE(genre) VALUES('" + genre + "')";
+                    commandspelopties = "INSERT INTO SPELOPTIE(speloptie) VALUES('" + comboBoxSpeloptie.Text + "')";
                     commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
                         gamenrreturn + "')";
                     commandgamespelopties = " INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('" + speloptienrreturn + "', '" +
                         gamenrreturn + "')";
 
-
-                    insertCommand4.CommandText = commandgamespelopties;
+                    insertCommand4.CommandText = commandgenre;
                     insertCommand4.Connection = connection;
+                    adapter4.InsertCommand.ExecuteNonQuery();
+
+                    insertCommand5.CommandText = commandgenre;
+                    insertCommand5.Connection = connection;
+                    adapter5.InsertCommand.ExecuteNonQuery();
+
+                    returnMethodeGamenr();
+                    returnMethodeGenrenr();
+                    returnMethodeSpeloptienr();
 
                     // spelopties
                     insertCommand2.CommandText = commandgamespelopties;
@@ -167,8 +158,6 @@ namespace Case2Project
 
                     adapter2.InsertCommand.ExecuteNonQuery();
                     adapter3.InsertCommand.ExecuteNonQuery();
-
-                    adapter4.InsertCommand.ExecuteNonQuery();
 
                     MessageBox.Show("GESLAAGD");
                     this.Close();

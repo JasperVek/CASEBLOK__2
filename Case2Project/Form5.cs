@@ -88,7 +88,6 @@ namespace Case2Project
 
             if (Form4.aanpassing == false)
             {
-
                 OleDbConnection connection = new OleDbConnection(connectionstring);
                 OleDbCommand insertCommand = new OleDbCommand();
                 OleDbDataAdapter adapter = new OleDbDataAdapter();
@@ -105,7 +104,6 @@ namespace Case2Project
                 OleDbCommand insertCommand5 = new OleDbCommand();
                 OleDbDataAdapter adapter5 = new OleDbDataAdapter();
 
-                string command;
                 string commandgamespelopties;
                 string commandgamegenre;
                 string commandgenre;
@@ -114,7 +112,7 @@ namespace Case2Project
                 try
                 {
                     connection.Open();
-                    command = "INSERT INTO GAME(titel, maker, prijs, leeftijd, datum) VALUES('" +
+                    string command = "INSERT INTO GAME(titel, maker, prijs, leeftijd, datum) VALUES('" +
                         textBoxTitel.Text + "', '" + textBoxMaker.Text + "', '" + Convert.ToInt32(textBoxPrijs.Text) +
                         "', '" + Convert.ToInt32(textBoxLeeftijd.Text) + "', '" + textBoxDatum.Text + "')";
 

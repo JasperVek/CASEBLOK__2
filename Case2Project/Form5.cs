@@ -95,20 +95,25 @@ namespace Case2Project
         }
 
        
-        string speloptienrreturn, gamenrreturn, genrenrreturn;
+        public string gamenrreturn, genrenrreturn;
+        public DataTable tableSpeloptienr = new DataTable();
 
         private void returnMethodeSpeloptienr()
         {
-            DataTable dataTable = new DataTable();
-
             string command2;
+            if (comboBoxSpeloptie.Text == "Single en multiplayer")
+            {
+                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = 'Singleplayer' OR speloptie = 'Multiplayer'";
+            }
+            else
+            {
+                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" + comboBoxSpeloptie.Text + "'";
+            }
             
-            command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" + comboBoxSpeloptie.Text + "'";
             OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Form1.connectionstring);
-            dataTable.Clear();
-            adapter.Fill(dataTable);
-
-            speloptienrreturn = dataTable.Rows[0][0].ToString();
+            tableSpeloptienr.Clear();
+            adapter.Fill(tableSpeloptienr);
+            MessageBox.Show(tableSpeloptienr.ToString());
         }
 
         private void returnMethodeGenrenr()
@@ -220,7 +225,6 @@ namespace Case2Project
                 string commandgamespelopties;
                 string commandgamegenre;
                 string commandgenre;
-                string commandspelopties;
 
                 try
                 {
@@ -235,44 +239,36 @@ namespace Case2Project
                     adapter.InsertCommand = insertCommand;
                     adapter.InsertCommand.ExecuteNonQuery();
 
-                    // zoeken
                     
                     commandgenre = " INSERT INTO GENRE(genre) VALUES('" + genre + "')";
-                    commandspelopties = "INSERT INTO SPELOPTIE(speloptie) VALUES('" + comboBoxSpeloptie.Text + "')";
 
                     insertCommand4.CommandText = commandgenre;
                     insertCommand4.Connection = connection;
                     adapter4.InsertCommand = insertCommand4;
                     adapter4.InsertCommand.ExecuteNonQuery();
 
-                    insertCommand5.CommandText = commandspelopties;
-                    insertCommand5.Connection = connection;
-                    adapter5.InsertCommand = insertCommand5;
-                    adapter5.InsertCommand.ExecuteNonQuery();
-
+                    returnMethodeSpeloptienr();
                     returnMethodeGamenr();
                     returnMethodeGenrenr();
-                    returnMethodeSpeloptienr();
+
+                    for (int i = 0; i < tableSpeloptienr.Rows.Count; i++)
+                    {
+                        commandgamespelopties = "INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('"
+                            + tableSpeloptienr.Rows[i][0] + "', '" + gamenrreturn + "')";
+
+                        insertCommand2.CommandText = commandgamespelopties;
+                        insertCommand2.Connection = connection;
+                        adapter2.InsertCommand = insertCommand2;
+                        adapter2.InsertCommand.ExecuteNonQuery();
+                    }
 
                     commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
                         gamenrreturn + "')";
-                    commandgamespelopties = " INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('" + speloptienrreturn + "', '" +
-                        gamenrreturn + "')";
 
-                    // spelopties
-                    insertCommand2.CommandText = commandgamespelopties;
-                    insertCommand2.Connection = connection;
-                    // genre
                     insertCommand3.CommandText = commandgamegenre;
                     insertCommand3.Connection = connection;
-
-                    // de adapters en uitvoeringen
-
                     adapter3.InsertCommand = insertCommand3;
                     adapter3.InsertCommand.ExecuteNonQuery();
-
-                    adapter2.InsertCommand = insertCommand2;
-                    adapter2.InsertCommand.ExecuteNonQuery();
 
                     MessageBox.Show("GESLAAGD");
                     this.Close();

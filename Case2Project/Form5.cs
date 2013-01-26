@@ -283,5 +283,53 @@ namespace Case2Project
                 }
             }
         }
+        private int genres = 0;
+        private string genre1;
+        private string genre2;
+        private string genre3;
+        private string genre4;
+        private string genre5;
+
+        private void buttonGenre_Click(object sender, EventArgs e)
+        {
+            if (genres == 0)
+            {
+                genre1 = textBoxGenre.Text;
+                textBoxGenre.Text = "";
+                labelGenres.Text = "1";
+            }
+
+            if (genres == 1)
+            {
+                genre2 = textBoxGenre.Text;
+                textBoxGenre.Text = "";
+                labelGenres.Text = "2";
+            }
+
+            if (genres == 2)
+            {
+                genre3 = textBoxGenre.Text;
+                textBoxGenre.Text = "";
+                labelGenres.Text = "3";
+            }
+
+            if (genres == 3)
+            {
+                genre4 = textBoxGenre.Text;
+                textBoxGenre.Text = "";
+                labelGenres.Text = "4";
+            }
+
+
+            if (genres == 4)
+            {
+                genre5 = textBoxGenre.Text;
+                textBoxGenre.Text = "";
+                labelGenres.Text = "5";
+
+            }
+
+            genres++;
+        }
     }
 }

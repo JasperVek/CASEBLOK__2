@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.aanpassingenGroupBox = new System.Windows.Forms.GroupBox();
+            this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.comboBoxSpeloptie = new System.Windows.Forms.ComboBox();
             this.labelLeeftijd = new System.Windows.Forms.Label();
             this.labelSpeloptie = new System.Windows.Forms.Label();
@@ -43,12 +44,15 @@
             this.textBoxDatum = new System.Windows.Forms.TextBox();
             this.textBoxMaker = new System.Windows.Forms.TextBox();
             this.textBoxTitel = new System.Windows.Forms.TextBox();
-            this.textBoxGenre = new System.Windows.Forms.TextBox();
+            this.buttonGenre = new System.Windows.Forms.Button();
+            this.labelGenres = new System.Windows.Forms.Label();
             this.aanpassingenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // aanpassingenGroupBox
             // 
+            this.aanpassingenGroupBox.Controls.Add(this.labelGenres);
+            this.aanpassingenGroupBox.Controls.Add(this.buttonGenre);
             this.aanpassingenGroupBox.Controls.Add(this.textBoxGenre);
             this.aanpassingenGroupBox.Controls.Add(this.comboBoxSpeloptie);
             this.aanpassingenGroupBox.Controls.Add(this.labelLeeftijd);
@@ -66,10 +70,17 @@
             this.aanpassingenGroupBox.Controls.Add(this.textBoxTitel);
             this.aanpassingenGroupBox.Location = new System.Drawing.Point(0, 1);
             this.aanpassingenGroupBox.Name = "aanpassingenGroupBox";
-            this.aanpassingenGroupBox.Size = new System.Drawing.Size(509, 129);
+            this.aanpassingenGroupBox.Size = new System.Drawing.Size(509, 199);
             this.aanpassingenGroupBox.TabIndex = 0;
             this.aanpassingenGroupBox.TabStop = false;
             this.aanpassingenGroupBox.Text = "Aanpassingen:";
+            // 
+            // textBoxGenre
+            // 
+            this.textBoxGenre.Location = new System.Drawing.Point(257, 37);
+            this.textBoxGenre.Name = "textBoxGenre";
+            this.textBoxGenre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxGenre.TabIndex = 17;
             // 
             // comboBoxSpeloptie
             // 
@@ -79,7 +90,7 @@
             "Singleplayer",
             "Multiplayer",
             "Single en multiplayer"});
-            this.comboBoxSpeloptie.Location = new System.Drawing.Point(139, 83);
+            this.comboBoxSpeloptie.Location = new System.Drawing.Point(139, 140);
             this.comboBoxSpeloptie.Name = "comboBoxSpeloptie";
             this.comboBoxSpeloptie.Size = new System.Drawing.Size(100, 21);
             this.comboBoxSpeloptie.TabIndex = 16;
@@ -87,7 +98,7 @@
             // labelLeeftijd
             // 
             this.labelLeeftijd.AutoSize = true;
-            this.labelLeeftijd.Location = new System.Drawing.Point(254, 67);
+            this.labelLeeftijd.Location = new System.Drawing.Point(254, 124);
             this.labelLeeftijd.Name = "labelLeeftijd";
             this.labelLeeftijd.Size = new System.Drawing.Size(44, 13);
             this.labelLeeftijd.TabIndex = 14;
@@ -96,7 +107,7 @@
             // labelSpeloptie
             // 
             this.labelSpeloptie.AutoSize = true;
-            this.labelSpeloptie.Location = new System.Drawing.Point(136, 67);
+            this.labelSpeloptie.Location = new System.Drawing.Point(136, 124);
             this.labelSpeloptie.Name = "labelSpeloptie";
             this.labelSpeloptie.Size = new System.Drawing.Size(54, 13);
             this.labelSpeloptie.TabIndex = 13;
@@ -105,7 +116,7 @@
             // labelPrijs
             // 
             this.labelPrijs.AutoSize = true;
-            this.labelPrijs.Location = new System.Drawing.Point(18, 67);
+            this.labelPrijs.Location = new System.Drawing.Point(18, 124);
             this.labelPrijs.Name = "labelPrijs";
             this.labelPrijs.Size = new System.Drawing.Size(29, 13);
             this.labelPrijs.TabIndex = 12;
@@ -149,7 +160,7 @@
             // 
             // aanpassingenOkButton
             // 
-            this.aanpassingenOkButton.Location = new System.Drawing.Point(388, 80);
+            this.aanpassingenOkButton.Location = new System.Drawing.Point(388, 137);
             this.aanpassingenOkButton.Name = "aanpassingenOkButton";
             this.aanpassingenOkButton.Size = new System.Drawing.Size(75, 23);
             this.aanpassingenOkButton.TabIndex = 7;
@@ -159,14 +170,14 @@
             // 
             // textBoxLeeftijd
             // 
-            this.textBoxLeeftijd.Location = new System.Drawing.Point(257, 83);
+            this.textBoxLeeftijd.Location = new System.Drawing.Point(257, 140);
             this.textBoxLeeftijd.Name = "textBoxLeeftijd";
             this.textBoxLeeftijd.Size = new System.Drawing.Size(100, 20);
             this.textBoxLeeftijd.TabIndex = 6;
             // 
             // textBoxPrijs
             // 
-            this.textBoxPrijs.Location = new System.Drawing.Point(21, 83);
+            this.textBoxPrijs.Location = new System.Drawing.Point(21, 140);
             this.textBoxPrijs.Name = "textBoxPrijs";
             this.textBoxPrijs.Size = new System.Drawing.Size(100, 20);
             this.textBoxPrijs.TabIndex = 4;
@@ -192,18 +203,30 @@
             this.textBoxTitel.Size = new System.Drawing.Size(100, 20);
             this.textBoxTitel.TabIndex = 0;
             // 
-            // textBoxGenre
+            // buttonGenre
             // 
-            this.textBoxGenre.Location = new System.Drawing.Point(257, 37);
-            this.textBoxGenre.Name = "textBoxGenre";
-            this.textBoxGenre.Size = new System.Drawing.Size(100, 20);
-            this.textBoxGenre.TabIndex = 17;
+            this.buttonGenre.Location = new System.Drawing.Point(285, 63);
+            this.buttonGenre.Name = "buttonGenre";
+            this.buttonGenre.Size = new System.Drawing.Size(40, 23);
+            this.buttonGenre.TabIndex = 18;
+            this.buttonGenre.Text = "Ok";
+            this.buttonGenre.UseVisualStyleBackColor = true;
+            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
+            // 
+            // labelGenres
+            // 
+            this.labelGenres.AutoSize = true;
+            this.labelGenres.Location = new System.Drawing.Point(344, 21);
+            this.labelGenres.Name = "labelGenres";
+            this.labelGenres.Size = new System.Drawing.Size(13, 13);
+            this.labelGenres.TabIndex = 19;
+            this.labelGenres.Text = "0";
             // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(511, 132);
+            this.ClientSize = new System.Drawing.Size(511, 201);
             this.Controls.Add(this.aanpassingenGroupBox);
             this.Name = "Form5";
             this.Text = "Form5";
@@ -231,5 +254,7 @@
         private System.Windows.Forms.TextBox textBoxMaker;
         private System.Windows.Forms.TextBox textBoxTitel;
         private System.Windows.Forms.TextBox textBoxGenre;
+        private System.Windows.Forms.Label labelGenres;
+        private System.Windows.Forms.Button buttonGenre;
     }
 }

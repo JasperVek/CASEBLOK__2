@@ -1,6 +1,6 @@
 ﻿namespace Case2Project
 {
-    partial class Form3
+    partial class Beoordelingen
     {
         /// <summary>
         /// Required designer variable.
@@ -80,7 +80,7 @@
             this.buttonBeoordelingOk.UseVisualStyleBackColor = true;
             this.buttonBeoordelingOk.Click += new System.EventHandler(this.buttonBeoordelingOk_Click);
             // 
-            // Form3
+            // Beoordelingen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -90,8 +90,8 @@
             this.Controls.Add(this.cijferTextBox);
             this.Controls.Add(this.beoordelingTextBox);
             this.Controls.Add(this.labelCijfer);
-            this.Name = "Form3";
-            this.Text = "Form3";
+            this.Name = "Beoordelingen";
+            this.Text = "Beoodeling";
             this.ResumeLayout(false);
             this.PerformLayout();
 

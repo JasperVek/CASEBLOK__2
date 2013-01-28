@@ -11,7 +11,7 @@ namespace Case2Project
 {
     public class login
     {
-        OleDbConnection connection = new OleDbConnection(Form1.connectionstring);
+        OleDbConnection connection = new OleDbConnection(Inloggen.connectionstring);
         OleDbCommand insertCommand = new OleDbCommand();
         OleDbDataAdapter adapter = new OleDbDataAdapter();
         public static int aantalRegels;
@@ -49,16 +49,16 @@ namespace Case2Project
 
             if (naam == "admin") //controleert of je als admin inlogt
             {
-                Form1.admin = true;
+                Inloggen.admin = true;
             }
             else
             {
-                Form1.admin = false;
+                Inloggen.admin = false;
             }
 
             string command = "SELECT * FROM LOGIN WHERE " +
                 " username = '" + naam + "' AND wachtwoord = '" + wachtwoord + "'";
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command, Form1.connectionstring);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
 
             aantalRegels = adapter.Fill(table);
         }

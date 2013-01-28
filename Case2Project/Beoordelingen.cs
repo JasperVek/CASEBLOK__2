@@ -11,11 +11,11 @@ using System.Data.OleDb;
 
 namespace Case2Project
 {
-    public partial class Form3 : Form
+    public partial class Beoordelingen : Form
     {
         public beoordeling beoordeling = new beoordeling();
 
-        public Form3()
+        public Beoordelingen()
         {
             InitializeComponent();
         }

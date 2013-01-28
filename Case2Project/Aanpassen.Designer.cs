@@ -1,6 +1,6 @@
 ﻿namespace Case2Project
 {
-    partial class Form5
+    partial class Aanpassen
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.aanpassingenGroupBox = new System.Windows.Forms.GroupBox();
+            this.labelGenres = new System.Windows.Forms.Label();
+            this.buttonGenre = new System.Windows.Forms.Button();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.comboBoxSpeloptie = new System.Windows.Forms.ComboBox();
             this.labelLeeftijd = new System.Windows.Forms.Label();
@@ -44,8 +46,6 @@
             this.textBoxDatum = new System.Windows.Forms.TextBox();
             this.textBoxMaker = new System.Windows.Forms.TextBox();
             this.textBoxTitel = new System.Windows.Forms.TextBox();
-            this.buttonGenre = new System.Windows.Forms.Button();
-            this.labelGenres = new System.Windows.Forms.Label();
             this.aanpassingenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,6 +74,25 @@
             this.aanpassingenGroupBox.TabIndex = 0;
             this.aanpassingenGroupBox.TabStop = false;
             this.aanpassingenGroupBox.Text = "Aanpassingen:";
+            // 
+            // labelGenres
+            // 
+            this.labelGenres.AutoSize = true;
+            this.labelGenres.Location = new System.Drawing.Point(344, 21);
+            this.labelGenres.Name = "labelGenres";
+            this.labelGenres.Size = new System.Drawing.Size(13, 13);
+            this.labelGenres.TabIndex = 19;
+            this.labelGenres.Text = "0";
+            // 
+            // buttonGenre
+            // 
+            this.buttonGenre.Location = new System.Drawing.Point(285, 63);
+            this.buttonGenre.Name = "buttonGenre";
+            this.buttonGenre.Size = new System.Drawing.Size(40, 23);
+            this.buttonGenre.TabIndex = 18;
+            this.buttonGenre.Text = "Ok";
+            this.buttonGenre.UseVisualStyleBackColor = true;
+            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
             // 
             // textBoxGenre
             // 
@@ -203,33 +222,14 @@
             this.textBoxTitel.Size = new System.Drawing.Size(100, 20);
             this.textBoxTitel.TabIndex = 0;
             // 
-            // buttonGenre
-            // 
-            this.buttonGenre.Location = new System.Drawing.Point(285, 63);
-            this.buttonGenre.Name = "buttonGenre";
-            this.buttonGenre.Size = new System.Drawing.Size(40, 23);
-            this.buttonGenre.TabIndex = 18;
-            this.buttonGenre.Text = "Ok";
-            this.buttonGenre.UseVisualStyleBackColor = true;
-            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
-            // 
-            // labelGenres
-            // 
-            this.labelGenres.AutoSize = true;
-            this.labelGenres.Location = new System.Drawing.Point(344, 21);
-            this.labelGenres.Name = "labelGenres";
-            this.labelGenres.Size = new System.Drawing.Size(13, 13);
-            this.labelGenres.TabIndex = 19;
-            this.labelGenres.Text = "0";
-            // 
-            // Form5
+            // Aanpassen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(511, 201);
             this.Controls.Add(this.aanpassingenGroupBox);
-            this.Name = "Form5";
-            this.Text = "Form5";
+            this.Name = "Aanpassen";
+            this.Text = "Aanpassen";
             this.aanpassingenGroupBox.ResumeLayout(false);
             this.aanpassingenGroupBox.PerformLayout();
             this.ResumeLayout(false);

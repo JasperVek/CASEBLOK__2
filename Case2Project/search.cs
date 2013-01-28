@@ -19,7 +19,7 @@ namespace Case2Project
             try
             {
                 command = "SELECT * FROM GAME";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Form1.connectionstring);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                 dataTable.Clear();
                 adapter.Fill(dataTable);
 
@@ -40,7 +40,7 @@ namespace Case2Project
             {
                 command = "SELECT * FROM GAME WHERE " + genre + " = '" +
                         tekst + "'";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Form1.connectionstring);
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                 dataTable.Clear();
                 adapter.Fill(dataTable);
                 dataGridView.DataSource = dataTable;
@@ -66,8 +66,8 @@ namespace Case2Project
             {
                 // genre:
                 command = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '"
-                    + Form2.gamenr + "'";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Form1.connectionstring);
+                    + Bibliotheek.gamenr + "'";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                 dataTable.Clear();
                 adapter.Fill(dataTable);
 
@@ -76,15 +76,15 @@ namespace Case2Project
                 {
                     command2 += "OR genrenr ='" + dataTable.Rows[i][0] + "'";
                 }
-                OleDbDataAdapter adapter2 = new OleDbDataAdapter(command2, Form1.connectionstring);
+                OleDbDataAdapter adapter2 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
                 dataTable2.Clear();
                 adapter2.Fill(dataTable2);
                 GridviewGenre.DataSource = dataTable2;
 
                 // speloptie
                 command3 = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '"
-                    + Form2.gamenr + "'";
-                OleDbDataAdapter adapter3 = new OleDbDataAdapter(command3, Form1.connectionstring);
+                    + Bibliotheek.gamenr + "'";
+                OleDbDataAdapter adapter3 = new OleDbDataAdapter(command3, Inloggen.connectionstring);
                 dataTable3.Clear();
                 adapter3.Fill(dataTable3);
 
@@ -93,7 +93,7 @@ namespace Case2Project
                 {
                     command4 += "OR speloptienr ='" + dataTable3.Rows[i][0] + "'";
                 }
-                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command4, Form1.connectionstring);
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command4, Inloggen.connectionstring);
                 dataTable4.Clear();
                 adapter4.Fill(dataTable4);
                 GridviewSpeloptie.DataSource = dataTable4; 
@@ -112,8 +112,8 @@ namespace Case2Project
             try
             {
                 command = "SELECT gebruikernr, beoordeling, beoordelingscijfer FROM GAME_BEOORDELING WHERE gamenr = '"
-                    + Form2.gamenr + "' AND gebruikernr = '" + Form1.gebruikerNaam + "'";
-                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Form1.connectionstring);
+                    + Bibliotheek.gamenr + "' AND gebruikernr = '" + Inloggen.gebruikerNaam + "'";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                 dataTable.Clear();
                 adapter.Fill(dataTable);
                 GridviewBeoordeling.DataSource = dataTable;

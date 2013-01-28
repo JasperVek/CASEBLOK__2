@@ -11,83 +11,83 @@ using System.Data.OleDb;
 
 namespace Case2Project
 {
-    public partial class Form5 : Form
+    public partial class Aanpassen : Form
     {
         private string connectionstring = @"Provider=Microsoft.SQLSERVER.CE.OLEDB.4.0;" +
             @"Data Source=|DataDirectory|\GAMES.sdf";
 
-        public Form5()
+        public Aanpassen()
         {
             InitializeComponent();
 
-            if (Form4.aanpassing == true)
+            if (ADMIN.aanpassing == true)
             {
                 // titel
-                string commandTitel = "SELECT titel FROM GAME WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandTitel = "SELECT titel FROM GAME WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableTitel = new DataTable();
-                OleDbDataAdapter adapterTitel = new OleDbDataAdapter(commandTitel, Form1.connectionstring);
+                OleDbDataAdapter adapterTitel = new OleDbDataAdapter(commandTitel, Inloggen.connectionstring);
                 dataTableTitel.Clear();
                 adapterTitel.Fill(dataTableTitel);
                 textBoxTitel.Text = dataTableTitel.Rows[0][0].ToString();
 
                 //maker
-                string commandMaker = "SELECT maker FROM GAME WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandMaker = "SELECT maker FROM GAME WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableMaker = new DataTable();
-                OleDbDataAdapter adapterMaker = new OleDbDataAdapter(commandMaker, Form1.connectionstring);
+                OleDbDataAdapter adapterMaker = new OleDbDataAdapter(commandMaker, Inloggen.connectionstring);
                 dataTableMaker.Clear();
                 adapterMaker.Fill(dataTableMaker);
                 textBoxMaker.Text = dataTableMaker.Rows[0][0].ToString();
 
                 //prijs
-                string commandPrijs = "SELECT prijs FROM GAME WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandPrijs = "SELECT prijs FROM GAME WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTablePrijs = new DataTable();
-                OleDbDataAdapter adapterPrijs = new OleDbDataAdapter(commandPrijs, Form1.connectionstring);
+                OleDbDataAdapter adapterPrijs = new OleDbDataAdapter(commandPrijs, Inloggen.connectionstring);
                 dataTablePrijs.Clear();
                 adapterPrijs.Fill(dataTablePrijs);
                 textBoxPrijs.Text = dataTablePrijs.Rows[0][0].ToString();
 
                 //leeftijd
-                string commandLeeftijd = "SELECT leeftijd FROM GAME WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandLeeftijd = "SELECT leeftijd FROM GAME WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableLeeftijd = new DataTable();
-                OleDbDataAdapter adapterLeeftijd = new OleDbDataAdapter(commandLeeftijd, Form1.connectionstring);
+                OleDbDataAdapter adapterLeeftijd = new OleDbDataAdapter(commandLeeftijd, Inloggen.connectionstring);
                 dataTableLeeftijd.Clear();
                 adapterLeeftijd.Fill(dataTableLeeftijd);
                 textBoxLeeftijd.Text = dataTableLeeftijd.Rows[0][0].ToString();
 
                 //datum
-                string commandDatum = "SELECT datum FROM GAME WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandDatum = "SELECT datum FROM GAME WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableDatum = new DataTable();
-                OleDbDataAdapter adapterDatum = new OleDbDataAdapter(commandDatum, Form1.connectionstring);
+                OleDbDataAdapter adapterDatum = new OleDbDataAdapter(commandDatum, Inloggen.connectionstring);
                 dataTableDatum.Clear();
                 adapterDatum.Fill(dataTableDatum);
                 textBoxDatum.Text = dataTableDatum.Rows[0][0].ToString();
 
                 //genre
-                string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableGenrenr = new DataTable();
-                OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Form1.connectionstring);
+                OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
                 dataTableGenrenr.Clear();
                 adapterGenrenr.Fill(dataTableGenrenr);
 
                 string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
                     + dataTableGenrenr.Rows[0][0].ToString() + "'";
                 DataTable dataTableGenre = new DataTable();
-                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Form1.connectionstring);
+                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
                 dataTableGenre.Clear();
                 adapterGenre.Fill(dataTableGenre);
                 textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
 
                 //speloptie
-                string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + Form4.adminGamenr + "'";
+                string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 DataTable dataTableSpeloptienr = new DataTable();
-                OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Form1.connectionstring);
+                OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Inloggen.connectionstring);
                 dataTableSpeloptienr.Clear();
                 adapterSpeloptienr.Fill(dataTableSpeloptienr);
 
                 string commandSpeloptie = "SELECT speloptie FROM SPELOPTIE WHERE speloptienr = '"
                     + dataTableSpeloptienr.Rows[0][0].ToString() + "'";
                 DataTable dataTableSpeloptie = new DataTable();
-                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, Form1.connectionstring);
+                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, Inloggen.connectionstring);
                 dataTableSpeloptie.Clear();
                 adapterSpeloptie.Fill(dataTableSpeloptie);
                 comboBoxSpeloptie.Text = dataTableSpeloptie.Rows[0][0].ToString();
@@ -101,19 +101,48 @@ namespace Case2Project
         private void returnMethodeSpeloptienr()
         {
             string command2;
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommand2 = new OleDbCommand();
+            OleDbDataAdapter adapter2 = new OleDbDataAdapter();
+            connection.Open();
             if (comboBoxSpeloptie.Text == "Single en multiplayer")
             {
-                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = 'Singleplayer' OR speloptie = 'Multiplayer'";
+                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '"
+                    + comboBoxSpeloptie.Text + "'";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                tableSpeloptienr.Clear();
+                adapter.Fill(tableSpeloptienr);
+
+                string commandgamespelopties1 = "INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('1', '"
+                    + gamenrreturn + "')";
+                string commandgamespelopties2 = "INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('2', '"
+                    + gamenrreturn + "')";
+
+                insertCommand2.CommandText = commandgamespelopties1;
+                insertCommand2.Connection = connection;
+                adapter2.InsertCommand = insertCommand2;
+                adapter2.InsertCommand.ExecuteNonQuery();
+                insertCommand2.CommandText = commandgamespelopties2;
+                adapter2.InsertCommand = insertCommand2;
+                adapter2.InsertCommand.ExecuteNonQuery();
             }
             else
             {
-                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" + comboBoxSpeloptie.Text + "'";
+                command2 = "SELECT speloptienr FROM SPELOPTIE WHERE speloptie = '" 
+                    + comboBoxSpeloptie.Text + "'";
+                OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                tableSpeloptienr.Clear();
+                adapter.Fill(tableSpeloptienr);
+
+                string commandgamespelopties = "INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('"
+                    + tableSpeloptienr.Rows[0][0] + "', '" + gamenrreturn + "')";
+
+                insertCommand2.CommandText = commandgamespelopties;
+                insertCommand2.Connection = connection;
+                adapter2.InsertCommand = insertCommand2;
+                adapter2.InsertCommand.ExecuteNonQuery();
             }
-            
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Form1.connectionstring);
-            tableSpeloptienr.Clear();
-            adapter.Fill(tableSpeloptienr);
-            MessageBox.Show(tableSpeloptienr.ToString());
+            connection.Close();
         }
 
         private void returnMethodeGenrenr()
@@ -122,7 +151,7 @@ namespace Case2Project
             
             command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + textBoxGenre.Text +"'";
             DataTable dataTable = new DataTable();
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Form1.connectionstring);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Inloggen.connectionstring);
             dataTable.Clear();
             adapter.Fill(dataTable);
 
@@ -135,7 +164,7 @@ namespace Case2Project
 
             command3 = "SELECT gamenr FROM GAME WHERE titel = '" + textBoxTitel.Text + "'";
             DataTable dataTable = new DataTable();
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command3, Form1.connectionstring);
+            OleDbDataAdapter adapter = new OleDbDataAdapter(command3, Inloggen.connectionstring);
             dataTable.Clear();
             adapter.Fill(dataTable);
 
@@ -150,7 +179,7 @@ namespace Case2Project
             // genre van deze actie
             string genre = textBoxGenre.Text;
 
-            if (Form4.aanpassing == true)
+            if (ADMIN.aanpassing == true)
             {
                 OleDbConnection connection = new OleDbConnection(connectionstring);
                 OleDbCommand updateCommand = new OleDbCommand();
@@ -161,7 +190,7 @@ namespace Case2Project
                 string command = "UPDATE GAME SET titel = '" + textBoxTitel.Text + "', maker = '" +
                     textBoxMaker.Text + "', prijs = '" + Convert.ToInt32(textBoxPrijs.Text) +
                     "', leeftijd = '" + Convert.ToInt32(textBoxLeeftijd.Text) + "', datum = '" +
-                    textBoxDatum.Text + "' WHERE gamenr = '" + Form4.adminGamenr + "'";
+                    textBoxDatum.Text + "' WHERE gamenr = '" + ADMIN.adminGamenr + "'";
 
                 updateCommand.CommandText = command;
                 updateCommand.Connection = connection;
@@ -170,8 +199,8 @@ namespace Case2Project
 
                 //genre
                 DataTable dataTableGenrenr = new DataTable();
-                string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + Form4.adminGamenr + "'";
-                OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Form1.connectionstring);
+                string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
                 dataTableGenrenr.Clear();
                 adapterGenrenr.Fill(dataTableGenrenr);
 
@@ -186,8 +215,8 @@ namespace Case2Project
 
                 //speloptie
                 DataTable dataTableSpeloptienr = new DataTable();
-                string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + Form4.adminGamenr + "'";
-                OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Form1.connectionstring);
+                string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Inloggen.connectionstring);
                 dataTableSpeloptienr.Clear();
                 adapterSpeloptienr.Fill(dataTableSpeloptienr);
 
@@ -202,9 +231,9 @@ namespace Case2Project
 
                 connection.Close();
                 this.Close();
-                Form4.aanpassing = false;
+                ADMIN.aanpassing = false;
             }
-            else if (Form4.aanpassing == false)
+            else if (ADMIN.aanpassing == false)
             {
                 OleDbConnection connection = new OleDbConnection(connectionstring);
                 OleDbCommand insertCommand = new OleDbCommand();
@@ -222,7 +251,6 @@ namespace Case2Project
                 OleDbCommand insertCommand5 = new OleDbCommand();
                 OleDbDataAdapter adapter5 = new OleDbDataAdapter();
 
-                string commandgamespelopties;
                 string commandgamegenre;
                 string commandgenre;
 
@@ -247,20 +275,9 @@ namespace Case2Project
                     adapter4.InsertCommand = insertCommand4;
                     adapter4.InsertCommand.ExecuteNonQuery();
 
-                    returnMethodeSpeloptienr();
                     returnMethodeGamenr();
+                    returnMethodeSpeloptienr();
                     returnMethodeGenrenr();
-
-                    for (int i = 0; i < tableSpeloptienr.Rows.Count; i++)
-                    {
-                        commandgamespelopties = "INSERT INTO GAME_SPELOPTIE(speloptienr, gamenr) VALUES('"
-                            + tableSpeloptienr.Rows[i][0] + "', '" + gamenrreturn + "')";
-
-                        insertCommand2.CommandText = commandgamespelopties;
-                        insertCommand2.Connection = connection;
-                        adapter2.InsertCommand = insertCommand2;
-                        adapter2.InsertCommand.ExecuteNonQuery();
-                    }
 
                     commandgamegenre = " INSERT INTO GAME_GENRE(genrenr, gamenr) VALUES('" + genrenrreturn + "', '" +
                         gamenrreturn + "')";
@@ -283,6 +300,7 @@ namespace Case2Project
                 }
             }
         }
+
         private int genres = 0;
         private string genre1;
         private string genre2;

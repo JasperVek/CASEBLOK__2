@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace Case2Project
 {
-    public partial class Form4 : Form
+    public partial class ADMIN : Form
     {
         private string connectionstring = @"Provider=Microsoft.SQLSERVER.CE.OLEDB.4.0;" +
             @"Data Source=|DataDirectory|\GAMES.sdf";
@@ -19,7 +19,7 @@ namespace Case2Project
         private string gebruikersnr;
         public static string adminGamenr;
 
-        public Form4()
+        public ADMIN()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace Case2Project
         {
             if (gamedatabaseLabel.Text == "selected")
             {
-                Form5 form5 = new Form5();
+                Aanpassen form5 = new Aanpassen();
                 form5.Show();
             }
             // naar form5 en die gegevens daar in een query laten toevoegen
@@ -40,7 +40,7 @@ namespace Case2Project
             if (gamedatabaseLabel.Text == "selected" && adminGamenr != null)
             {
                 aanpassing = true;
-                Form5 form5 = new Form5();
+                Aanpassen form5 = new Aanpassen();
                 form5.Show();
             }
 

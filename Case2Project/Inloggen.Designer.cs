@@ -1,6 +1,6 @@
 ﻿namespace Case2Project
 {
-    partial class Form1
+    partial class Inloggen
     {
         /// <summary>
         /// Required designer variable.
@@ -168,7 +168,7 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Gemaakt door Menno en Jasper ITI1D";
             // 
-            // Form1
+            // Inloggen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -177,8 +177,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Inloggen";
+            this.Text = "Inloggen";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

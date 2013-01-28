@@ -1,6 +1,6 @@
 ﻿namespace Case2Project
 {
-    partial class Form4
+    partial class ADMIN
     {
         /// <summary>
         /// Required designer variable.
@@ -210,7 +210,7 @@
             this.adminComboBox.Size = new System.Drawing.Size(121, 21);
             this.adminComboBox.TabIndex = 16;
             // 
-            // Form4
+            // ADMIN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -232,8 +232,8 @@
             this.Controls.Add(this.labelZoek);
             this.Controls.Add(this.adminZoekTekstBox);
             this.Controls.Add(this.adminDataGridView);
-            this.Name = "Form4";
-            this.Text = "Form4";
+            this.Name = "ADMIN";
+            this.Text = "ADMIN";
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridViewSpeloptie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridViewGenre)).EndInit();

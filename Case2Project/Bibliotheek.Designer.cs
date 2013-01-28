@@ -1,6 +1,6 @@
 ﻿namespace Case2Project
 {
-    partial class Form2
+    partial class Bibliotheek
     {
         /// <summary>
         /// Required designer variable.
@@ -179,7 +179,7 @@
             this.buttonAllGames.UseVisualStyleBackColor = true;
             this.buttonAllGames.Click += new System.EventHandler(this.buttonAllGames_Click);
             // 
-            // Form2
+            // Bibliotheek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -192,8 +192,8 @@
             this.Controls.Add(this.zoekDatabaseGenreTextbox);
             this.Controls.Add(this.zoekDatabaseButton);
             this.Controls.Add(this.zoekDatabaseTextbox);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "Bibliotheek";
+            this.Text = "Bibliotheek";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form2_FormClosed);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.genreDataGridView)).EndInit();

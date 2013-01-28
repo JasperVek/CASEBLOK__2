@@ -11,16 +11,16 @@ using System.Data.OleDb;
 
 namespace Case2Project
 {
-    public partial class Form2 : Form
+    public partial class Bibliotheek : Form
     {
         public static string gamenr;
 
         public search search = new search();
 
-        public Form2()
+        public Bibliotheek()
         {
             InitializeComponent();
-            if (Form1.admin == true)
+            if (Inloggen.admin == true)
             {
                 adminButton.Visible = true;
             }
@@ -28,7 +28,7 @@ namespace Case2Project
 
         private void adminButton_Click(object sender, EventArgs e)
         {
-            Form4 form4 = new Form4();
+            ADMIN form4 = new ADMIN();
             form4.Show();
         }
 
@@ -41,7 +41,7 @@ namespace Case2Project
             }
             else
             {
-                Form3 form3 = new Form3();
+                Beoordelingen form3 = new Beoordelingen();
                 form3.Show();
             }
         }

@@ -13,7 +13,7 @@ namespace Case2Project
     {
         public void reactie(string tekst, int cijfer)
         {
-            OleDbConnection connection = new OleDbConnection(Form1.connectionstring);
+            OleDbConnection connection = new OleDbConnection(Inloggen.connectionstring);
             OleDbCommand insertCommand = new OleDbCommand();
             OleDbDataAdapter adapter = new OleDbDataAdapter();
 
@@ -24,7 +24,7 @@ namespace Case2Project
             {
                 connection.Open();
                 command = "INSERT INTO GAME_BEOORDELING(gamenr, gebruikernr, beoordeling, beoordelingscijfer) VALUES('" +
-                     Form2.gamenr + "', '" + Form1.gebruikerNaam + "', '" + tekst + "', '" +
+                     Bibliotheek.gamenr + "', '" + Inloggen.gebruikerNaam + "', '" + tekst + "', '" +
                       cijfer + "')";
 
                 insertCommand.Connection = connection;

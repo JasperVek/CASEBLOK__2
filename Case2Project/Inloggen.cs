@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace Case2Project
 {
-    public partial class Form1 : Form
+    public partial class Inloggen : Form
     {
         public static string connectionstring =
             @"Provider = Microsoft.SQLSERVER.CE.OLEDB.4.0;" +
@@ -21,7 +21,7 @@ namespace Case2Project
         public static string gebruikerNaam;
         public login login = new login();
 
-        public Form1()
+        public Inloggen()
         {
             InitializeComponent();
         }
@@ -39,7 +39,7 @@ namespace Case2Project
             {
                 gebruikerNaam = loginNaamTextbox.Text;
                 MessageBox.Show("Welkom");
-                Form2 form2 = new Form2();
+                Bibliotheek form2 = new Bibliotheek();
                 form2.Show();
                 this.Hide(); //verstopt form1, de applicatie sluit als form2 word gesloten
             }

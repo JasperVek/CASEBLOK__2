@@ -97,7 +97,247 @@ namespace Case2Project
        
         public string gamenrreturn, genrenrreturn;
         public DataTable tableSpeloptienr = new DataTable();
+        private void genreInvoer()
+        {
+            // controleren of genre1,2,3,4,5 er zijn
+            // invoer query's maken
 
+            // genre1,2,3,4,5 voorbereiding
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommandGenre1 = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+            OleDbCommand insertCommandGenre2 = new OleDbCommand();
+
+            OleDbCommand insertCommandGenre3 = new OleDbCommand();
+
+            OleDbCommand insertCommandGenre4 = new OleDbCommand();
+
+            OleDbCommand insertCommandGenre5 = new OleDbCommand();
+
+            connection.Open();
+
+
+            if (genre1 != null)
+            {
+
+                // controleren van genre1
+                string controlecommand1 = "SELECT genre FROM GENRE WHERE genre = '" + genre1 + "')";
+
+                DataTable dataTable = new DataTable();
+                OleDbDataAdapter adapter2 = new OleDbDataAdapter(controlecommand1, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter2.Fill(dataTable);
+
+                string genre1controle = dataTable.Rows[0][0].ToString();
+
+                if (genre1controle != genre1)
+                {
+                    // genre 1 invoeren
+                    string command = "INSERT INTO GENRE(genre) VALUES('" + genre1 + "')";
+
+
+                    insertCommandGenre1.Connection = connection;
+                    insertCommandGenre1.CommandText = command;
+                    adapter.InsertCommand = insertCommandGenre1;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+                // koppelen genre via gamenr
+                string command2;
+
+                command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + genre1 + "'";
+                DataTable dataTable2 = new DataTable();
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+
+                string genrenrreturn1 = dataTable.Rows[0][0].ToString();
+
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" + ADMIN.adminGamenr + "," + genrenrreturn1 + "')";
+
+
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command3;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+
+            }
+
+            if (genre2 != null)
+            {
+                // controleren van genre2
+                string controlecommand2 = "SELECT genre FROM GENRE WHERE genre = '" + genre2 + "')";
+
+                DataTable dataTable = new DataTable();
+                OleDbDataAdapter adapter3 = new OleDbDataAdapter(controlecommand2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter3.Fill(dataTable);
+
+                string genre2controle = dataTable.Rows[0][0].ToString();
+
+                if (genre2controle != genre2)
+                {
+                    // genre 2 invoeren
+                    string command = "INSERT INTO GENRE(genre) VALUES('" + genre2 + "')";
+
+
+                    insertCommandGenre2.Connection = connection;
+                    insertCommandGenre2.CommandText = command;
+                    adapter.InsertCommand = insertCommandGenre2;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
+                //koppelen genre2
+
+                string command2;
+
+                command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + genre2 + "'";
+                DataTable dataTable2 = new DataTable();
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+
+                string genrenrreturn2 = dataTable.Rows[0][0].ToString();
+
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" + ADMIN.adminGamenr + "," + genrenrreturn2 + "')";
+
+
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command3;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+            }
+
+            if (genre3 != null)
+            {
+                // controleren van genre3
+                string controlecommand3 = "SELECT genre FROM GENRE WHERE genre = '" + genre3 + "')";
+
+                DataTable dataTable = new DataTable();
+                OleDbDataAdapter adapter3 = new OleDbDataAdapter(controlecommand3, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter3.Fill(dataTable);
+
+                string genre3controle = dataTable.Rows[0][0].ToString();
+
+                if (genre3controle != genre3)
+                {
+                    // genre 3 invoeren
+                    string command = "INSERT INTO GENRE(genre) VALUES('" + genre3 + "')";
+
+
+                    insertCommandGenre3.Connection = connection;
+                    insertCommandGenre3.CommandText = command;
+                    adapter.InsertCommand = insertCommandGenre3;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
+                string command2;
+
+                command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + genre3 + "'";
+                DataTable dataTable2 = new DataTable();
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+
+                string genrenrreturn3 = dataTable.Rows[0][0].ToString();
+
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" + ADMIN.adminGamenr + "," + genrenrreturn3 + "')";
+
+
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command3;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+            }
+
+            if (genre4 != null)
+            {
+                // controleren van genre4
+                string controlecommand4 = "SELECT genre FROM GENRE WHERE genre = '" + genre4 + "')";
+
+                DataTable dataTable = new DataTable();
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(controlecommand4, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter4.Fill(dataTable);
+
+                string genre4controle = dataTable.Rows[0][0].ToString();
+
+                if (genre4controle != genre4)
+                {
+                    // genre 4 invoeren
+                    string command = "INSERT INTO GENRE(genre) VALUES('" + genre4 + "')";
+
+
+                    insertCommandGenre4.Connection = connection;
+                    insertCommandGenre4.CommandText = command;
+                    adapter.InsertCommand = insertCommandGenre4;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
+                string command2;
+
+                command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + genre4 + "'";
+                DataTable dataTable2 = new DataTable();
+                OleDbDataAdapter adapter5 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+
+                string genrenrreturn4 = dataTable.Rows[0][0].ToString();
+
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" + ADMIN.adminGamenr + "," + genrenrreturn4 + "')";
+
+
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command3;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+            }
+
+            if (genre5 != null)
+            {
+                // controleren van genre5
+                string controlecommand5 = "SELECT genre FROM GENRE WHERE genre = '" + genre5 + "')";
+
+                DataTable dataTable = new DataTable();
+                OleDbDataAdapter adapter5 = new OleDbDataAdapter(controlecommand5, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter5.Fill(dataTable);
+
+                string genre5controle = dataTable.Rows[0][0].ToString();
+
+                if (genre5controle != genre5)
+                {
+                    // genre 5 invoeren
+                    string command = "INSERT INTO GENRE(genre) VALUES('" + genre5 + "')";
+
+
+                    insertCommandGenre5.Connection = connection;
+                    insertCommandGenre5.CommandText = command;
+                    adapter.InsertCommand = insertCommandGenre5;
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
+                string command2;
+
+                command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + genre5 + "'";
+                DataTable dataTable2 = new DataTable();
+                OleDbDataAdapter adapter4 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+
+                string genrenrreturn5 = dataTable.Rows[0][0].ToString();
+
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" + ADMIN.adminGamenr + "," + genrenrreturn5 + "')";
+
+
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command3;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+
+                // koppelen gamenr via gamegenre genre5
+            }
+        }
         private void returnMethodeSpeloptienr()
         {
             string command2;

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.aanpassingenGroupBox = new System.Windows.Forms.GroupBox();
+            this.labelGenres = new System.Windows.Forms.Label();
+            this.buttonGenre = new System.Windows.Forms.Button();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
             this.comboBoxSpeloptie = new System.Windows.Forms.ComboBox();
             this.labelLeeftijd = new System.Windows.Forms.Label();
@@ -44,13 +46,13 @@
             this.textBoxDatum = new System.Windows.Forms.TextBox();
             this.textBoxMaker = new System.Windows.Forms.TextBox();
             this.textBoxTitel = new System.Windows.Forms.TextBox();
-            this.buttonGenre = new System.Windows.Forms.Button();
-            this.labelGenres = new System.Windows.Forms.Label();
+            this.infoGenreButton = new System.Windows.Forms.Button();
             this.aanpassingenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // aanpassingenGroupBox
             // 
+            this.aanpassingenGroupBox.Controls.Add(this.infoGenreButton);
             this.aanpassingenGroupBox.Controls.Add(this.labelGenres);
             this.aanpassingenGroupBox.Controls.Add(this.buttonGenre);
             this.aanpassingenGroupBox.Controls.Add(this.textBoxGenre);
@@ -74,6 +76,25 @@
             this.aanpassingenGroupBox.TabIndex = 0;
             this.aanpassingenGroupBox.TabStop = false;
             this.aanpassingenGroupBox.Text = "Aanpassingen:";
+            // 
+            // labelGenres
+            // 
+            this.labelGenres.AutoSize = true;
+            this.labelGenres.Location = new System.Drawing.Point(344, 21);
+            this.labelGenres.Name = "labelGenres";
+            this.labelGenres.Size = new System.Drawing.Size(13, 13);
+            this.labelGenres.TabIndex = 19;
+            this.labelGenres.Text = "0";
+            // 
+            // buttonGenre
+            // 
+            this.buttonGenre.Location = new System.Drawing.Point(285, 63);
+            this.buttonGenre.Name = "buttonGenre";
+            this.buttonGenre.Size = new System.Drawing.Size(40, 23);
+            this.buttonGenre.TabIndex = 18;
+            this.buttonGenre.Text = "Ok";
+            this.buttonGenre.UseVisualStyleBackColor = true;
+            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
             // 
             // textBoxGenre
             // 
@@ -203,24 +224,16 @@
             this.textBoxTitel.Size = new System.Drawing.Size(100, 20);
             this.textBoxTitel.TabIndex = 0;
             // 
-            // buttonGenre
+            // infoGenreButton
             // 
-            this.buttonGenre.Location = new System.Drawing.Point(285, 63);
-            this.buttonGenre.Name = "buttonGenre";
-            this.buttonGenre.Size = new System.Drawing.Size(40, 23);
-            this.buttonGenre.TabIndex = 18;
-            this.buttonGenre.Text = "Ok";
-            this.buttonGenre.UseVisualStyleBackColor = true;
-            this.buttonGenre.Click += new System.EventHandler(this.buttonGenre_Click);
-            // 
-            // labelGenres
-            // 
-            this.labelGenres.AutoSize = true;
-            this.labelGenres.Location = new System.Drawing.Point(344, 21);
-            this.labelGenres.Name = "labelGenres";
-            this.labelGenres.Size = new System.Drawing.Size(13, 13);
-            this.labelGenres.TabIndex = 19;
-            this.labelGenres.Text = "0";
+            this.infoGenreButton.Location = new System.Drawing.Point(276, 92);
+            this.infoGenreButton.Name = "infoGenreButton";
+            this.infoGenreButton.Size = new System.Drawing.Size(62, 23);
+            this.infoGenreButton.TabIndex = 20;
+            this.infoGenreButton.Text = "infoGenre";
+            this.infoGenreButton.UseVisualStyleBackColor = true;
+            this.infoGenreButton.Visible = false;
+            this.infoGenreButton.Click += new System.EventHandler(this.infoGenreButton_Click);
             // 
             // Form5
             // 
@@ -256,5 +269,6 @@
         private System.Windows.Forms.TextBox textBoxGenre;
         private System.Windows.Forms.Label labelGenres;
         private System.Windows.Forms.Button buttonGenre;
+        private System.Windows.Forms.Button infoGenreButton;
     }
 }

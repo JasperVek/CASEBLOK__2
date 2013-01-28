@@ -91,10 +91,58 @@ namespace Case2Project
                 dataTableSpeloptie.Clear();
                 adapterSpeloptie.Fill(dataTableSpeloptie);
                 comboBoxSpeloptie.Text = dataTableSpeloptie.Rows[0][0].ToString();
+
+                infoGenreButton.Visible = true;
             }
         }
 
-       
+        private void genreInvoer()
+        {
+            // controleren of genre1,2,3,4,5 er zijn
+            // invoer query's maken
+            
+            // genre1,2,3,4,5 voorbereiding
+            OleDbConnection connection = new OleDbConnection(connectionstring);
+            OleDbCommand insertCommandGenre1 = new OleDbCommand();
+            OleDbDataAdapter adapter = new OleDbDataAdapter();
+           
+            // controleren of het genre al bestaat
+            
+            
+            connection.Open();
+            if (genre1 != null)
+            {
+                // genre 1 invoeren
+                string command = "INSERT INTO GENRE(genre) VALUES('" +
+                    textBoxTitel.Text + "', '" + textBoxMaker.Text + "', '" + Convert.ToInt32(textBoxPrijs.Text) +
+                    "', '" + Convert.ToInt32(textBoxLeeftijd.Text) + "', '" + textBoxDatum.Text + "')";
+
+                
+                insertCommandGenre1.Connection = connection;
+                insertCommandGenre1.CommandText = command;
+                adapter.InsertCommand = insertCommandGenre1;
+                adapter.InsertCommand.ExecuteNonQuery();
+
+                
+            }
+            if (genre2 != null)
+            {
+            }
+
+            if (genre3 != null)
+            {
+            }
+
+            if (genre4 != null)
+            {
+            }
+
+            if (genre5 != null)
+            {
+            }
+            
+            // koppelen met gamenr via game_genre
+        }
         public string gamenrreturn, genrenrreturn;
         public DataTable tableSpeloptienr = new DataTable();
 
@@ -145,6 +193,12 @@ namespace Case2Project
 
         private void aanpassingenOkButton_Click(object sender, EventArgs e)
         {
+            genres = 0;
+            // label resetten
+            labelGenres.Text = "";
+
+
+            
             // spelopties van deze actie
             string spelopties = comboBoxSpeloptie.Text;
             // genre van deze actie
@@ -206,6 +260,9 @@ namespace Case2Project
             }
             else if (Form4.aanpassing == false)
             {
+                // resetten label genre
+                labelGenres.Text = "";
+
                 OleDbConnection connection = new OleDbConnection(connectionstring);
                 OleDbCommand insertCommand = new OleDbCommand();
                 OleDbDataAdapter adapter = new OleDbDataAdapter();
@@ -330,6 +387,23 @@ namespace Case2Project
             }
 
             genres++;
+        }
+
+        private void infoGenreButton_Click(object sender, EventArgs e)
+        {
+            // de genres laten zien van dat spel die er al stonden zou er een aanpassing gemaakt moeten worden
+
+            // daarna zet hij die gegevens in de textbox zoals altijd bij elke klik ook zou die er zijn
+
+
+            // zoeken naar spelopties gelinkt met gamenr
+
+            // zetten in de tekstboxen in de vorm van genre1 t/m 5
+
+
+            
+             
+            
         }
     }
 }

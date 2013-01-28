@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.aanpassingenGroupBox = new System.Windows.Forms.GroupBox();
+            this.infoGenreButton = new System.Windows.Forms.Button();
             this.labelGenres = new System.Windows.Forms.Label();
             this.buttonGenre = new System.Windows.Forms.Button();
             this.textBoxGenre = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.textBoxDatum = new System.Windows.Forms.TextBox();
             this.textBoxMaker = new System.Windows.Forms.TextBox();
             this.textBoxTitel = new System.Windows.Forms.TextBox();
-            this.infoGenreButton = new System.Windows.Forms.Button();
             this.aanpassingenGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,6 +76,16 @@
             this.aanpassingenGroupBox.TabIndex = 0;
             this.aanpassingenGroupBox.TabStop = false;
             this.aanpassingenGroupBox.Text = "Aanpassingen:";
+            // 
+            // infoGenreButton
+            // 
+            this.infoGenreButton.Location = new System.Drawing.Point(276, 92);
+            this.infoGenreButton.Name = "infoGenreButton";
+            this.infoGenreButton.Size = new System.Drawing.Size(62, 23);
+            this.infoGenreButton.TabIndex = 20;
+            this.infoGenreButton.Text = "infoGenre";
+            this.infoGenreButton.UseVisualStyleBackColor = true;
+            this.infoGenreButton.Click += new System.EventHandler(this.infoGenreButton_Click);
             // 
             // labelGenres
             // 
@@ -223,17 +233,6 @@
             this.textBoxTitel.Name = "textBoxTitel";
             this.textBoxTitel.Size = new System.Drawing.Size(100, 20);
             this.textBoxTitel.TabIndex = 0;
-            // 
-            // infoGenreButton
-            // 
-            this.infoGenreButton.Location = new System.Drawing.Point(276, 92);
-            this.infoGenreButton.Name = "infoGenreButton";
-            this.infoGenreButton.Size = new System.Drawing.Size(62, 23);
-            this.infoGenreButton.TabIndex = 20;
-            this.infoGenreButton.Text = "infoGenre";
-            this.infoGenreButton.UseVisualStyleBackColor = true;
-            this.infoGenreButton.Visible = false;
-            this.infoGenreButton.Click += new System.EventHandler(this.infoGenreButton_Click);
             // 
             // Form5
             // 

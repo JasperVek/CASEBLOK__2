@@ -87,7 +87,7 @@
             this.groupBox1.Controls.Add(this.algemeneDataGridView);
             this.groupBox1.Location = new System.Drawing.Point(12, 71);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(399, 300);
+            this.groupBox1.Size = new System.Drawing.Size(399, 338);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             // 
@@ -101,7 +101,7 @@
             this.genreDataGridView.Location = new System.Drawing.Point(205, 239);
             this.genreDataGridView.Name = "genreDataGridView";
             this.genreDataGridView.ReadOnly = true;
-            this.genreDataGridView.Size = new System.Drawing.Size(188, 52);
+            this.genreDataGridView.Size = new System.Drawing.Size(188, 93);
             this.genreDataGridView.TabIndex = 6;
             // 
             // speloptieDataGridView
@@ -114,7 +114,7 @@
             this.speloptieDataGridView.Location = new System.Drawing.Point(6, 239);
             this.speloptieDataGridView.Name = "speloptieDataGridView";
             this.speloptieDataGridView.ReadOnly = true;
-            this.speloptieDataGridView.Size = new System.Drawing.Size(193, 52);
+            this.speloptieDataGridView.Size = new System.Drawing.Size(193, 93);
             this.speloptieDataGridView.TabIndex = 5;
             // 
             // algemeneDataGridView
@@ -136,7 +136,7 @@
             this.groupBox2.Controls.Add(this.beoordelingDataGridView);
             this.groupBox2.Location = new System.Drawing.Point(417, 119);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(283, 252);
+            this.groupBox2.Size = new System.Drawing.Size(283, 290);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
@@ -145,7 +145,7 @@
             this.beoordelingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.beoordelingDataGridView.Location = new System.Drawing.Point(6, 10);
             this.beoordelingDataGridView.Name = "beoordelingDataGridView";
-            this.beoordelingDataGridView.Size = new System.Drawing.Size(271, 233);
+            this.beoordelingDataGridView.Size = new System.Drawing.Size(271, 274);
             this.beoordelingDataGridView.TabIndex = 5;
             // 
             // maakBeoordelingButton
@@ -183,7 +183,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 383);
+            this.ClientSize = new System.Drawing.Size(712, 421);
             this.Controls.Add(this.buttonAllGames);
             this.Controls.Add(this.maakBeoordelingButton);
             this.Controls.Add(this.adminButton);

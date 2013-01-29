@@ -13,15 +13,14 @@ namespace Case2Project
 {
     public partial class ADMIN : Form
     {
-        private string connectionstring = @"Provider=Microsoft.SQLSERVER.CE.OLEDB.4.0;" +
-            @"Data Source=|DataDirectory|\GAMES.sdf";
-
         private string gebruikersnr;
         public static string adminGamenr;
 
         public ADMIN()
         {
             InitializeComponent();
+
+            gamedatabaseLabel.Text = "selected";
         }
         public static bool aanpassing = false;
 
@@ -43,15 +42,13 @@ namespace Case2Project
                 Aanpassen form5 = new Aanpassen();
                 form5.Show();
             }
-
-           
         }
 
         private void buttonVerwijderen_Click(object sender, EventArgs e)
         {
             if (gamedatabaseLabel.Text == "selected")
             {
-                OleDbConnection connection = new OleDbConnection(connectionstring);
+                OleDbConnection connection = new OleDbConnection(Inloggen.connectionstring);
                 
                 connection.Open();
                 string commandGame = "DELETE FROM GAME WHERE gamenr = '"
@@ -68,7 +65,7 @@ namespace Case2Project
                 string commandGenre = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" +
                     adminGamenr + "'";
                 DataTable table = new DataTable();
-                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, connectionstring);
+                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
                 table.Clear();
                 adapterGenre.Fill(table);
 
@@ -95,7 +92,7 @@ namespace Case2Project
 
                 string commandSpeloptie = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" +
                     adminGamenr + "'";
-                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, connectionstring);
+                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter(commandSpeloptie, Inloggen.connectionstring);
                 DataTable table2 = new DataTable();
                 table2.Clear();
                 adapterSpeloptie.Fill(table2);
@@ -141,8 +138,7 @@ namespace Case2Project
                 }
                 else
                 {
-
-                    OleDbConnection connection = new OleDbConnection(connectionstring);
+                    OleDbConnection connection = new OleDbConnection(Inloggen.connectionstring);
                     DataTable table = new DataTable();
                     OleDbCommand dropCommand = new OleDbCommand();
 
@@ -180,18 +176,18 @@ namespace Case2Project
 
         private void buttonAdminZoek_Click(object sender, EventArgs e)
         {
-            if (userdatabaseLabel.Text == "selected")
+            if (gamedatabaseLabel.Text == "selected")
             {
-                // userdatabase open
+                // gamedatabase open
 
                 string command;
                 DataTable dataTable = new DataTable();
 
                 try
                 {
-                    command = "SELECT * FROM GAME WHERE " + adminZoekTekstBox.Text + " = '" +
+                    command = "SELECT * FROM GAME WHERE " + adminComboBox.Text + " = '" +
                             adminZoekTekstBox.Text + "'";
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
                     adminDataGridView.DataSource = dataTable;
@@ -204,7 +200,7 @@ namespace Case2Project
 
             else
             {
-                //gamedatabase open
+                // userdatabase open
 
                 string command;
                 DataTable dataTable = new DataTable();
@@ -213,7 +209,7 @@ namespace Case2Project
                 {
                     command = "SELECT * FROM LOGIN WHERE " + adminZoekTekstBox.Text + " = '" +
                             adminZoekTekstBox.Text + "'";
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
                     adminDataGridView.DataSource = dataTable;
@@ -235,7 +231,7 @@ namespace Case2Project
                 try
                 {
                     command = "SELECT * FROM GAME";
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
                     adminDataGridView.DataSource = dataTable;
@@ -253,7 +249,7 @@ namespace Case2Project
                 try
                 {
                     command = "SELECT * FROM LOGIN";
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
                     adminDataGridView.DataSource = dataTable;
@@ -285,7 +281,7 @@ namespace Case2Project
 
                     command = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '"
                         + adminGamenr + "'";
-                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, connectionstring);
+                    OleDbDataAdapter adapter = new OleDbDataAdapter(command, Inloggen.connectionstring);
                     dataTable.Clear();
                     adapter.Fill(dataTable);
 
@@ -294,7 +290,7 @@ namespace Case2Project
                     {
                         command2 += "OR genrenr ='" + dataTable.Rows[i][0] + "'";
                     }
-                    OleDbDataAdapter adapter2 = new OleDbDataAdapter(command2, connectionstring);
+                    OleDbDataAdapter adapter2 = new OleDbDataAdapter(command2, Inloggen.connectionstring);
                     dataTable2.Clear();
                     adapter2.Fill(dataTable2);
                     adminDataGridViewGenre.DataSource = dataTable2;
@@ -302,7 +298,7 @@ namespace Case2Project
                     //2de gedeelte voor spelopties
                     command3 = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '"
                         + adminGamenr + "'";
-                    OleDbDataAdapter adapter3 = new OleDbDataAdapter(command3, connectionstring);
+                    OleDbDataAdapter adapter3 = new OleDbDataAdapter(command3, Inloggen.connectionstring);
                     dataTable3.Clear();
                     adapter3.Fill(dataTable3);
 
@@ -311,7 +307,7 @@ namespace Case2Project
                     {
                         command4 += "OR speloptienr ='" + dataTable3.Rows[i][0] + "'";
                     }
-                    OleDbDataAdapter adapter4 = new OleDbDataAdapter(command4, connectionstring);
+                    OleDbDataAdapter adapter4 = new OleDbDataAdapter(command4, Inloggen.connectionstring);
                     dataTable4.Clear();
                     adapter4.Fill(dataTable4);
                     adminDataGridViewSpeloptie.DataSource = dataTable4; 

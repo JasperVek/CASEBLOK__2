@@ -87,7 +87,7 @@
             // 
             // buttonToevoegen
             // 
-            this.buttonToevoegen.Location = new System.Drawing.Point(86, 327);
+            this.buttonToevoegen.Location = new System.Drawing.Point(87, 364);
             this.buttonToevoegen.Name = "buttonToevoegen";
             this.buttonToevoegen.Size = new System.Drawing.Size(75, 23);
             this.buttonToevoegen.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             // buttonBewerken
             // 
-            this.buttonBewerken.Location = new System.Drawing.Point(218, 327);
+            this.buttonBewerken.Location = new System.Drawing.Point(219, 364);
             this.buttonBewerken.Name = "buttonBewerken";
             this.buttonBewerken.Size = new System.Drawing.Size(75, 23);
             this.buttonBewerken.TabIndex = 5;
@@ -107,7 +107,7 @@
             // 
             // buttonVerwijderen
             // 
-            this.buttonVerwijderen.Location = new System.Drawing.Point(350, 327);
+            this.buttonVerwijderen.Location = new System.Drawing.Point(351, 364);
             this.buttonVerwijderen.Name = "buttonVerwijderen";
             this.buttonVerwijderen.Size = new System.Drawing.Size(75, 23);
             this.buttonVerwijderen.TabIndex = 6;
@@ -117,7 +117,7 @@
             // 
             // buttonUserDatabase
             // 
-            this.buttonUserDatabase.Location = new System.Drawing.Point(218, 396);
+            this.buttonUserDatabase.Location = new System.Drawing.Point(219, 433);
             this.buttonUserDatabase.Name = "buttonUserDatabase";
             this.buttonUserDatabase.Size = new System.Drawing.Size(75, 23);
             this.buttonUserDatabase.TabIndex = 7;
@@ -128,7 +128,7 @@
             // labelUserDatabase
             // 
             this.labelUserDatabase.AutoSize = true;
-            this.labelUserDatabase.Location = new System.Drawing.Point(100, 401);
+            this.labelUserDatabase.Location = new System.Drawing.Point(101, 438);
             this.labelUserDatabase.Name = "labelUserDatabase";
             this.labelUserDatabase.Size = new System.Drawing.Size(106, 13);
             this.labelUserDatabase.TabIndex = 8;
@@ -137,7 +137,7 @@
             // labelGameDatabase
             // 
             this.labelGameDatabase.AutoSize = true;
-            this.labelGameDatabase.Location = new System.Drawing.Point(100, 367);
+            this.labelGameDatabase.Location = new System.Drawing.Point(101, 404);
             this.labelGameDatabase.Name = "labelGameDatabase";
             this.labelGameDatabase.Size = new System.Drawing.Size(112, 13);
             this.labelGameDatabase.TabIndex = 9;
@@ -145,7 +145,7 @@
             // 
             // buttonGameDatabase
             // 
-            this.buttonGameDatabase.Location = new System.Drawing.Point(218, 362);
+            this.buttonGameDatabase.Location = new System.Drawing.Point(219, 399);
             this.buttonGameDatabase.Name = "buttonGameDatabase";
             this.buttonGameDatabase.Size = new System.Drawing.Size(75, 23);
             this.buttonGameDatabase.TabIndex = 10;
@@ -156,7 +156,7 @@
             // gamedatabaseLabel
             // 
             this.gamedatabaseLabel.AutoSize = true;
-            this.gamedatabaseLabel.Location = new System.Drawing.Point(347, 362);
+            this.gamedatabaseLabel.Location = new System.Drawing.Point(348, 399);
             this.gamedatabaseLabel.Name = "gamedatabaseLabel";
             this.gamedatabaseLabel.Size = new System.Drawing.Size(0, 13);
             this.gamedatabaseLabel.TabIndex = 11;
@@ -164,7 +164,7 @@
             // userdatabaseLabel
             // 
             this.userdatabaseLabel.AutoSize = true;
-            this.userdatabaseLabel.Location = new System.Drawing.Point(347, 406);
+            this.userdatabaseLabel.Location = new System.Drawing.Point(348, 443);
             this.userdatabaseLabel.Name = "userdatabaseLabel";
             this.userdatabaseLabel.Size = new System.Drawing.Size(0, 13);
             this.userdatabaseLabel.TabIndex = 12;
@@ -184,7 +184,7 @@
             this.adminDataGridViewSpeloptie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.adminDataGridViewSpeloptie.Location = new System.Drawing.Point(12, 269);
             this.adminDataGridViewSpeloptie.Name = "adminDataGridViewSpeloptie";
-            this.adminDataGridViewSpeloptie.Size = new System.Drawing.Size(237, 52);
+            this.adminDataGridViewSpeloptie.Size = new System.Drawing.Size(237, 74);
             this.adminDataGridViewSpeloptie.TabIndex = 14;
             // 
             // adminDataGridViewGenre
@@ -192,7 +192,7 @@
             this.adminDataGridViewGenre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.adminDataGridViewGenre.Location = new System.Drawing.Point(270, 269);
             this.adminDataGridViewGenre.Name = "adminDataGridViewGenre";
-            this.adminDataGridViewGenre.Size = new System.Drawing.Size(242, 52);
+            this.adminDataGridViewGenre.Size = new System.Drawing.Size(242, 74);
             this.adminDataGridViewGenre.TabIndex = 15;
             // 
             // adminComboBox
@@ -200,11 +200,11 @@
             this.adminComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.adminComboBox.FormattingEnabled = true;
             this.adminComboBox.Items.AddRange(new object[] {
-            "Titel",
-            "Maker",
-            "Prijs",
-            "Leeftijd",
-            "Datum"});
+            "titel",
+            "maker",
+            "prijs",
+            "leeftijd",
+            "datum"});
             this.adminComboBox.Location = new System.Drawing.Point(12, 5);
             this.adminComboBox.Name = "adminComboBox";
             this.adminComboBox.Size = new System.Drawing.Size(121, 21);
@@ -214,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 433);
+            this.ClientSize = new System.Drawing.Size(527, 476);
             this.Controls.Add(this.adminComboBox);
             this.Controls.Add(this.adminDataGridViewGenre);
             this.Controls.Add(this.adminDataGridViewSpeloptie);

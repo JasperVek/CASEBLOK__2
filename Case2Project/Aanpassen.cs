@@ -69,13 +69,18 @@ namespace Case2Project
                 dataTableGenrenr.Clear();
                 adapterGenrenr.Fill(dataTableGenrenr);
 
-                string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
-                    + dataTableGenrenr.Rows[0][0].ToString() + "'";
-                DataTable dataTableGenre = new DataTable();
-                OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
-                dataTableGenre.Clear();
-                adapterGenre.Fill(dataTableGenre);
-                textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                if (dataTableGenrenr.Rows.Count <= 0)
+                    textBoxGenre.Text = "Geen genres";
+                else
+                {
+                    string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
+                        + dataTableGenrenr.Rows[0][0].ToString() + "'";
+                    DataTable dataTableGenre = new DataTable();
+                    OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
+                    dataTableGenre.Clear();
+                    adapterGenre.Fill(dataTableGenre);
+                    textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                }
 
                 //speloptie
                 string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
@@ -94,7 +99,6 @@ namespace Case2Project
             }
         }
 
-       
         public string gamenrreturn, genrenrreturn;
         public DataTable tableSpeloptienr = new DataTable();
 
@@ -102,7 +106,6 @@ namespace Case2Project
         {
             // controleren of genre1,2,3,4,5 er zijn
             // invoer query's maken
-
             // genre1,2,3,4,5 voorbereiding
             OleDbConnection connection = new OleDbConnection(connectionstring);
             OleDbCommand insertCommandGenre1 = new OleDbCommand();
@@ -126,7 +129,7 @@ namespace Case2Project
                 OleDbDataAdapter adapter2 = new OleDbDataAdapter(controlecommand1, connection);
                 dataTable.Clear();
                 adapter2.Fill(dataTable);
-                
+
                 if (dataTable.Rows.Count == 0)
                 {
                     // genre 1 invoeren
@@ -148,7 +151,7 @@ namespace Case2Project
 
                 string genrenrreturn1 = dataTable2.Rows[0][0].ToString();
 
-                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" 
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('"
                     + gamenrreturn + "', '" + genrenrreturn1 + "')";
 
                 insertCommandGenre1.Connection = connection;
@@ -188,7 +191,7 @@ namespace Case2Project
 
                 string genrenrreturn2 = dataTable2.Rows[0][0].ToString();
 
-                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" 
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('"
                     + gamenrreturn + "', '" + genrenrreturn2 + "')";
 
                 insertCommandGenre2.Connection = connection;
@@ -227,7 +230,7 @@ namespace Case2Project
 
                 string genrenrreturn3 = dataTable2.Rows[0][0].ToString();
 
-                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" 
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('"
                     + gamenrreturn + "', '" + genrenrreturn3 + "')";
 
                 insertCommandGenre3.Connection = connection;
@@ -266,7 +269,7 @@ namespace Case2Project
 
                 string genrenrreturn4 = dataTable2.Rows[0][0].ToString();
 
-                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" 
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('"
                     + gamenrreturn + "', '" + genrenrreturn4 + "')";
 
                 insertCommandGenre4.Connection = connection;
@@ -305,7 +308,7 @@ namespace Case2Project
 
                 string genrenrreturn5 = dataTable2.Rows[0][0].ToString();
 
-                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('" 
+                string command3 = "INSERT INTO GAME_GENRE(gamenr, genrenr) VALUES('"
                     + gamenrreturn + "', '" + genrenrreturn5 + "')";
 
                 insertCommandGenre5.Connection = connection;
@@ -381,8 +384,6 @@ namespace Case2Project
 
         private void aanpassingenOkButton_Click(object sender, EventArgs e)
         {
-           
-
             // spelopties van deze actie
             string spelopties = comboBoxSpeloptie.Text;
             // genre van deze actie
@@ -407,50 +408,32 @@ namespace Case2Project
                 adapterGame.UpdateCommand = updateCommand;
                 adapterGame.UpdateCommand.ExecuteNonQuery();
 
-                //genre
-                DataTable dataTableGenrenr = new DataTable();
-                string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
-                OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
-                dataTableGenrenr.Clear();
-                adapterGenrenr.Fill(dataTableGenrenr);
-
-                OleDbDataAdapter adapterGenre = new OleDbDataAdapter();
-                string commandGenre = "UPDATE GENRE SET genre = '" + textBoxGenre.Text + "' WHERE genrenr = '"
-                    + dataTableGenrenr.Rows[0][0].ToString() + "'";
-
-                updateCommand.CommandText = commandGenre;
-                updateCommand.Connection = connection;
-                adapterGenre.UpdateCommand = updateCommand;
-                adapterGenre.UpdateCommand.ExecuteNonQuery();
-
-                //speloptie select
+                //speloptie delete
                 DataTable dataTableSelect = new DataTable();
                 string command8 = "DELETE FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
 
-                OleDbDataAdapter adapterofdoom = new OleDbDataAdapter();
+                OleDbDataAdapter delSpeltopieAdapter = new OleDbDataAdapter();
                 OleDbCommand dropCommand3 = new OleDbCommand();
                 dropCommand3.CommandText = command8;
                 dropCommand3.Connection = connection;
-                adapterofdoom.DeleteCommand = dropCommand3;
-                adapterofdoom.DeleteCommand.ExecuteNonQuery();                
+                delSpeltopieAdapter.DeleteCommand = dropCommand3;
+                delSpeltopieAdapter.DeleteCommand.ExecuteNonQuery();
 
-                // de rest
+                //genre delete
+                DataTable dataTableSelect2 = new DataTable();
+                string command9= "DELETE FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+
+                OleDbDataAdapter delGenreAdapter = new OleDbDataAdapter();
+                OleDbCommand dropCommand4 = new OleDbCommand();
+                dropCommand4.CommandText = command9;
+                dropCommand4.Connection = connection;
+                delGenreAdapter.DeleteCommand = dropCommand4;
+                delGenreAdapter.DeleteCommand.ExecuteNonQuery(); 
+
+                //speloptie en genre terugzetten
                 returnMethodeGamenr();
                 returnMethodeSpeloptienr();
-                /*DataTable dataTableSpeloptienr = new DataTable();
-                string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
-                OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Inloggen.connectionstring);
-                dataTableSpeloptienr.Clear();
-                adapterSpeloptienr.Fill(dataTableSpeloptienr);
-
-                OleDbDataAdapter adapterSpeloptie = new OleDbDataAdapter();
-                string commandSpeloptie = "UPDATE SPELOPTIE SET speloptie = '" + comboBoxSpeloptie.Text + 
-                    "' WHERE speloptienr = '" + dataTableSpeloptienr.Rows[0][0].ToString() + "'";
-
-                updateCommand.CommandText = commandSpeloptie;
-                updateCommand.Connection = connection;
-                adapterSpeloptie.UpdateCommand = updateCommand;
-                adapterSpeloptie.UpdateCommand.ExecuteNonQuery();*/
+                genreInvoer();
 
                 connection.Close();
                 this.Close();
@@ -504,28 +487,118 @@ namespace Case2Project
         {
             if (ADMIN.aanpassing == true)
             {
-                DataTable dataTable = new DataTable();
-
-                string controlecommand1 = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
-
-                OleDbDataAdapter adapter = new OleDbDataAdapter(controlecommand1, Inloggen.connectionstring);
-                dataTable.Clear();
-                adapter.Fill(dataTable);
-                
-                string controlecommand2 = "SELECT genre FROM GENRE WHERE genrenr = '" + dataTable.Rows[0][0] + "'";
-                for (int i = 0; i < dataTable.Rows.Count; i++)
+                if (genres == 0)
                 {
-                    controlecommand2 += "OR genrenr = '" + dataTable.Rows[i][0] + "'";
+                    genre1 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "1";
+
+                    string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                    DataTable dataTableGenrenr = new DataTable();
+                    OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
+                    dataTableGenrenr.Clear();
+                    adapterGenrenr.Fill(dataTableGenrenr);
+                    
+                    if (dataTableGenrenr.Rows.Count <= 1)
+                        textBoxGenre.Text = null;
+                    else
+                    {
+                        string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
+                            + dataTableGenrenr.Rows[1][0].ToString() + "'";
+                        DataTable dataTableGenre = new DataTable();
+                        OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
+                        dataTableGenre.Clear();
+                        adapterGenre.Fill(dataTableGenre);
+                        textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                    }
                 }
 
-                OleDbDataAdapter adapter2 = new OleDbDataAdapter(controlecommand2, Inloggen.connectionstring);
-                dataTable.Clear();
-                adapter2.Fill(dataTable);
+                if (genres == 1)
+                {
+                    genre2 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "2";
 
+                    string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                    DataTable dataTableGenrenr = new DataTable();
+                    OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
+                    dataTableGenrenr.Clear();
+                    adapterGenrenr.Fill(dataTableGenrenr);
 
+                    if (dataTableGenrenr.Rows.Count <= 2)
+                        textBoxGenre.Text = null;
+                    else
+                    {
+                        string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
+                            + dataTableGenrenr.Rows[2][0].ToString() + "'";
+                        DataTable dataTableGenre = new DataTable();
+                        OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
+                        dataTableGenre.Clear();
+                        adapterGenre.Fill(dataTableGenre);
+                        textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                    }
+                }
+
+                if (genres == 2)
+                {
+                    genre3 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "3";
+
+                    string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                    DataTable dataTableGenrenr = new DataTable();
+                    OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
+                    dataTableGenrenr.Clear();
+                    adapterGenrenr.Fill(dataTableGenrenr);
+
+                    if (dataTableGenrenr.Rows.Count <= 3)
+                        textBoxGenre.Text = null;
+                    else
+                    {
+                        string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
+                            + dataTableGenrenr.Rows[3][0].ToString() + "'";
+                        DataTable dataTableGenre = new DataTable();
+                        OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
+                        dataTableGenre.Clear();
+                        adapterGenre.Fill(dataTableGenre);
+                        textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                    }
+                }
+
+                if (genres == 3)
+                {
+                    genre4 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "4";
+
+                    string commandGenrenr = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+                    DataTable dataTableGenrenr = new DataTable();
+                    OleDbDataAdapter adapterGenrenr = new OleDbDataAdapter(commandGenrenr, Inloggen.connectionstring);
+                    dataTableGenrenr.Clear();
+                    adapterGenrenr.Fill(dataTableGenrenr);
+
+                    if (dataTableGenrenr.Rows.Count <= 4)
+                        textBoxGenre.Text = null;
+                    else
+                    {
+                        string commandGenre = "SELECT genre FROM GENRE WHERE genrenr = '"
+                            + dataTableGenrenr.Rows[4][0].ToString() + "'";
+                        DataTable dataTableGenre = new DataTable();
+                        OleDbDataAdapter adapterGenre = new OleDbDataAdapter(commandGenre, Inloggen.connectionstring);
+                        dataTableGenre.Clear();
+                        adapterGenre.Fill(dataTableGenre);
+                        textBoxGenre.Text = dataTableGenre.Rows[0][0].ToString();
+                    }
+                }
+
+                if (genres == 4)
+                {
+                    genre5 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "5";
+                }
 
                 genres++;
-                labelGenres.Text = Convert.ToString(genres);
             }
             else
             {

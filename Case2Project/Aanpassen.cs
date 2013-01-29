@@ -317,6 +317,7 @@ namespace Case2Project
             }
             connection.Close();
         }
+
         private void returnMethodeSpeloptienr()
         {
             string command2;
@@ -362,19 +363,6 @@ namespace Case2Project
                 adapter2.InsertCommand.ExecuteNonQuery();
             }
             connection.Close();
-        }
-
-        private void returnMethodeGenrenr()
-        {
-            string command2;
-            
-            command2 = "SELECT genrenr FROM GENRE WHERE genre = '" + textBoxGenre.Text +"'";
-            DataTable dataTable = new DataTable();
-            OleDbDataAdapter adapter = new OleDbDataAdapter(command2, Inloggen.connectionstring);
-            dataTable.Clear();
-            adapter.Fill(dataTable);
-
-            genrenrreturn = dataTable.Rows[0][0].ToString();
         }
 
         private void returnMethodeGamenr()
@@ -491,7 +479,7 @@ namespace Case2Project
                     returnMethodeSpeloptienr();
                     genreInvoer();
 
-                    MessageBox.Show("GESLAAGD");
+                    MessageBox.Show("Geslaagd");
                     this.Close();
                 }
                 catch (Exception obj)
@@ -514,43 +502,71 @@ namespace Case2Project
 
         private void buttonGenre_Click(object sender, EventArgs e)
         {
-            if (genres == 0)
+            if (ADMIN.aanpassing == true)
             {
-                genre1 = textBoxGenre.Text;
-                textBoxGenre.Text = "";
-                labelGenres.Text = "1";
-            }
+                DataTable dataTable = new DataTable();
 
-            if (genres == 1)
+                string controlecommand1 = "SELECT genrenr FROM GAME_GENRE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+
+                OleDbDataAdapter adapter = new OleDbDataAdapter(controlecommand1, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter.Fill(dataTable);
+                
+                string controlecommand2 = "SELECT genre FROM GENRE WHERE genrenr = '" + dataTable.Rows[0][0] + "'";
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    controlecommand2 += "OR genrenr = '" + dataTable.Rows[i][0] + "'";
+                }
+
+                OleDbDataAdapter adapter2 = new OleDbDataAdapter(controlecommand2, Inloggen.connectionstring);
+                dataTable.Clear();
+                adapter2.Fill(dataTable);
+
+
+
+                genres++;
+                labelGenres.Text = Convert.ToString(genres);
+            }
+            else
             {
-                genre2 = textBoxGenre.Text;
-                textBoxGenre.Text = "";
-                labelGenres.Text = "2";
+                if (genres == 0)
+                {
+                    genre1 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "1";
+                }
+
+                if (genres == 1)
+                {
+                    genre2 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "2";
+                }
+
+                if (genres == 2)
+                {
+                    genre3 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "3";
+                }
+
+                if (genres == 3)
+                {
+                    genre4 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "4";
+                }
+
+
+                if (genres == 4)
+                {
+                    genre5 = textBoxGenre.Text;
+                    textBoxGenre.Text = "";
+                    labelGenres.Text = "5";
+                }
+
+                genres++;
             }
-
-            if (genres == 2)
-            {
-                genre3 = textBoxGenre.Text;
-                textBoxGenre.Text = "";
-                labelGenres.Text = "3";
-            }
-
-            if (genres == 3)
-            {
-                genre4 = textBoxGenre.Text;
-                textBoxGenre.Text = "";
-                labelGenres.Text = "4";
-            }
-
-
-            if (genres == 4)
-            {
-                genre5 = textBoxGenre.Text;
-                textBoxGenre.Text = "";
-                labelGenres.Text = "5";
-            }
-
-            genres++;
         }
     }
 }

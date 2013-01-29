@@ -44,8 +44,7 @@ namespace Case2Project
                 form5.Show();
             }
 
-           // gamenr meegeven en naar form5 gaan, daar de gegevens die al erin staan ( alles ) ophalen met een select via het gamenr
-           // en dan met alter query op form5
+           
         }
 
         private void buttonVerwijderen_Click(object sender, EventArgs e)
@@ -53,7 +52,7 @@ namespace Case2Project
             if (gamedatabaseLabel.Text == "selected")
             {
                 OleDbConnection connection = new OleDbConnection(connectionstring);
-
+                
                 connection.Open();
                 string commandGame = "DELETE FROM GAME WHERE gamenr = '"
                     + adminGamenr + "'";

@@ -393,6 +393,8 @@ namespace Case2Project
 
         private void aanpassingenOkButton_Click(object sender, EventArgs e)
         {
+           
+
             // spelopties van deze actie
             string spelopties = comboBoxSpeloptie.Text;
             // genre van deze actie
@@ -400,6 +402,7 @@ namespace Case2Project
 
             if (ADMIN.aanpassing == true)
             {
+                
                 OleDbConnection connection = new OleDbConnection(connectionstring);
                 OleDbCommand updateCommand = new OleDbCommand();
 
@@ -432,8 +435,21 @@ namespace Case2Project
                 adapterGenre.UpdateCommand = updateCommand;
                 adapterGenre.UpdateCommand.ExecuteNonQuery();
 
-                //speloptie
-                DataTable dataTableSpeloptienr = new DataTable();
+                //speloptie select
+                DataTable dataTableSelect = new DataTable();
+                string command8 = "DELETE FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
+
+                OleDbDataAdapter adapterofdoom = new OleDbDataAdapter();
+                OleDbCommand dropCommand3 = new OleDbCommand();
+                dropCommand3.CommandText = command8;
+                dropCommand3.Connection = connection;
+                adapterofdoom.DeleteCommand = dropCommand3;
+                adapterofdoom.DeleteCommand.ExecuteNonQuery();                
+
+                // de rest
+                returnMethodeGamenr();
+                returnMethodeSpeloptienr();
+                /*DataTable dataTableSpeloptienr = new DataTable();
                 string commandSpeloptienr = "SELECT speloptienr FROM GAME_SPELOPTIE WHERE gamenr = '" + ADMIN.adminGamenr + "'";
                 OleDbDataAdapter adapterSpeloptienr = new OleDbDataAdapter(commandSpeloptienr, Inloggen.connectionstring);
                 dataTableSpeloptienr.Clear();
@@ -446,7 +462,7 @@ namespace Case2Project
                 updateCommand.CommandText = commandSpeloptie;
                 updateCommand.Connection = connection;
                 adapterSpeloptie.UpdateCommand = updateCommand;
-                adapterSpeloptie.UpdateCommand.ExecuteNonQuery();
+                adapterSpeloptie.UpdateCommand.ExecuteNonQuery();*/
 
                 connection.Close();
                 this.Close();
